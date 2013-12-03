@@ -1,0 +1,17 @@
+#TIMEFLOW	format version	1
+#TIMEFLOW	source	Unspecified
+#TIMEFLOW	description	
+#TIMEFLOW	field	ID	Number
+#TIMEFLOW	field	Date	Date/Time
+#TIMEFLOW	field	Label	Text	23
+#TIMEFLOW	field	Amount	Number
+#TIMEFLOW	field	Description	Text	35
+#TIMEFLOW	field	Work Status	Text	12
+#TIMEFLOW	end-metadata
+#TIMEFLOW	alias	TIMEFLOW_START	Date
+#TIMEFLOW	alias	TIMEFLOW_LABEL	Label
+#TIMEFLOW	alias	TIMEFLOW_COLOR	Label
+#TIMEFLOW	====== End of Header. Data below is in tab-delimited format. =====
+ID	Date	Label	Amount	Description	Work Status
+1.0	Jan 1 2013	Start	4.0	Why are there 4?	I don't know
+2.0	Jan 31 2013	Leveson starts speaking	5.0	I still don't understand the amount	wtf
