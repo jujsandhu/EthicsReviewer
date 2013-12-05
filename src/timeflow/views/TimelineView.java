@@ -271,6 +271,7 @@ public class TimelineView extends AbstractView {
 		public TimelinePanel(TFModel model)
 		{
 			super(model);
+			/*
 			addMouseListener(new MouseAdapter() {
 
 				@Override
@@ -327,7 +328,7 @@ public class TimelineView extends AbstractView {
 						end=visuals.getTimeScale().toTime(b);
 					}
 					moveTime(new Interval(start,end));
-				}});
+				}});*/
 		}
 		
 		public RoughTime getTime(Point p)

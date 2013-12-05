@@ -1,4 +1,5 @@
-CURRENT_FILE	/Users/jujsandhu/Downloads/Prototypes/EthicsReviewer/bin/timeflow/app/data
+CURRENT_FILE	C:\Users\Aman\Desktop\Workspace\EthicsReviewer\settings\examples\Leveson Inquiry
 CURRENT_DIR	null
-RECENT_FILE	/Users/jujsandhu/Downloads/Prototypes/EthicsReviewer/bin/timeflow/app/data
-RECENT_FILE	/Users/jujsandhu/Downloads/Prototypes/EthicsReviewer/C:\Users\Aman\Desktop\Workspace\EthicsReviewer\bin\timeflow\app\data
+RECENT_FILE	C:\Users\Aman\Desktop\Workspace\EthicsReviewer\settings\examples\Leveson Inquiry
+RECENT_FILE	C:\Users\jujsandhu\Downloads\Prototypes\EthicsReviewer\bin\timeflow\app\data
+RECENT_FILE	C:\Users\jujsandhu\Downloads\Prototypes\EthicsReviewer\C:\Users\Aman\Desktop\Workspace\EthicsReviewer\bin\timeflow\app\data

@@ -14,6 +14,8 @@ import java.util.*;
 
 import javax.swing.*;
 
+import ethicsreviewer.views.MediaViews;
+
 
 
 public abstract class AbstractVisualizationView extends JPanel
