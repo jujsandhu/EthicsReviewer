@@ -106,6 +106,7 @@ public class initialView extends JFrame implements ActionListener {
             frame.getContentPane().add(new lecturerLogin());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
+            frame.setLocationRelativeTo(null);
             frame.setSize(500, frame.getHeight());
             frame.setVisible(true);
         }
