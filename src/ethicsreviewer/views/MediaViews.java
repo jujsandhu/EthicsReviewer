@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -90,6 +92,7 @@ public class MediaViews {
         backButton.setText("Back");
         
         JButton nextButton = new JButton();
+        nextButton.addActionListener(new nextOnClickListener());
         nextButton.setText("Next");
         
         nextButtonContainer.add(nextButton, BorderLayout.CENTER);
@@ -109,6 +112,16 @@ public class MediaViews {
     private void displayMediaWindow2()
     {
         
+    }
+    
+    class nextOnClickListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			new ResponseView().openScreen();
+			
+		}
+    	
     }
 
 }
