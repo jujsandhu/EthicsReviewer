@@ -10,7 +10,8 @@ public class Main {
 		// launch the sessions Screen
 		//Testing commit
 		Sessions startSession = new Sessions();
-        startSession.openScreen();
+        //startSession.openScreen();
+        new ResponseView().openScreen();
 	}
 
 }

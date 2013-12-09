@@ -26,7 +26,6 @@ import timeflow.format.file.FileExtensionCatalog;
 public class Sessions {
 	
 	private int row;
-	private boolean sessionSelected;
 	String[] examples;
 	
 	public Sessions(){
