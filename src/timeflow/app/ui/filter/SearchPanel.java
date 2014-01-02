@@ -18,7 +18,7 @@ public class SearchPanel extends ModelPanel {
 	public SearchPanel(TFModel model, final FilterControlPanel f) {
 		super(model);
 		setBackground(Color.white);
-		setBorder(BorderFactory.createEmptyBorder(15, 5,0,0));
+		setBorder(BorderFactory.createEmptyBorder(15, 5,15,0));
 		setLayout(new GridLayout(1,1));
 		JPanel top=new JPanel();
 		top.setLayout(new BorderLayout());

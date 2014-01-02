@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -106,6 +108,7 @@ public class ResponseView {
         JButton next = new JButton("Next");
         //view.addActionListener(new viewButtonListener());
         buttonContainer.add(next);
+        
 	}
 	
 	public String readTranscript(){

@@ -35,7 +35,7 @@ public class FilterControlPanel extends ModelPanel
 		top.setLayout(new BorderLayout());
 		top.setBackground(Color.white);
 		
-		top.add(new StatusPanel(model, this), BorderLayout.SOUTH);
+		//top.add(new StatusPanel(model, this), BorderLayout.SOUTH);
 		top.add(searchPanel, BorderLayout.CENTER);
 	
 		add(top, BorderLayout.NORTH);

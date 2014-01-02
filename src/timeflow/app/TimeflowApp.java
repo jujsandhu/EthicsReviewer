@@ -77,7 +77,7 @@ public class TimeflowApp extends JFrame
 		Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds(0,0,Math.min(d.width, 1200), Math.min(d.height, 900));
 		setTitle(Display.version());
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		final QuitAction quitAction=new QuitAction(this, model);
 		addWindowListener(new WindowAdapter() {
 			@Override

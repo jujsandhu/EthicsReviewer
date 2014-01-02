@@ -86,16 +86,16 @@ public class lecturerLogin extends JPanel  {
                      // login button w/out password text before later setting logout text
                      // this closes bug #2336
                 	 
+                     startSession.openScreen();
                 	
-                    startSession.openScreen();
-                	
-                	 
+                	 /*
                      logButt.setText(LOG_OUT);
                      if(clearPasswords)
                          pswdField.setText(null);
                      nameField.setEnabled(false);
                      pswdField.setEnabled(false);
                      fireLoginEvent(nameField.getText(), true);
+                     */
                  }
                  else
                      if(displayFailures)
