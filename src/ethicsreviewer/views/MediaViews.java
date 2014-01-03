@@ -1,4 +1,4 @@
-package ethicsreviewer.views;
+	package ethicsreviewer.views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -62,13 +63,13 @@ public class MediaViews {
         contentPane.add(titleBar, BorderLayout.NORTH);
         
         
-        JPanel mediaContainer = new JPanel();
-        mediaContainer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        mediaContainer.setLayout(new BorderLayout());
-        mediaContainer.setBackground(new Color(200,200,200));
-        mediaContainer.setPreferredSize(new Dimension(1000,500));
-        contentPane.add(mediaContainer, BorderLayout.CENTER);
+        ImageIcon image = new ImageIcon("images/LevesonInquiry.png");
+        JLabel label = new JLabel("", image, JLabel.CENTER);
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setPreferredSize(new Dimension(1000,500));
+        panel.add(label, BorderLayout.CENTER);
         
+        contentPane.add(panel, BorderLayout.CENTER);
         
         JPanel buttonsBar = new JPanel();
         buttonsBar.setLayout(new BorderLayout());
