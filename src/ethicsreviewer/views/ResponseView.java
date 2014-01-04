@@ -41,7 +41,7 @@ public class ResponseView {
         transcriptPanel.setPreferredSize(new Dimension(500,400));
         contentPane.add(transcriptPanel, BorderLayout.WEST);
         
-        JTextArea transcript = new JTextArea(15,50);
+        JTextArea transcript = new JTextArea(15,38);
         transcript.setText(readTranscript());
         transcript.setLineWrap(true);
         transcript.setEditable(false);
@@ -54,7 +54,7 @@ public class ResponseView {
         rulesTitle.setForeground(Color.white);
         transcriptPanel.add(rulesTitle, BorderLayout.CENTER);
         
-        JTextArea rules = new JTextArea(15,50);
+        JTextArea rules = new JTextArea(15,38);
         rules.setText(readTranscript());
         rules.setLineWrap(true);
         rules.setEditable(false);
@@ -194,8 +194,17 @@ public class ResponseView {
         buttonContainer.setBackground(new Color(240,240,240));
         textPanel.add(buttonContainer, BorderLayout.SOUTH);
         JButton next = new JButton("Next");
-        //view.addActionListener(new viewButtonListener());
+        next.addActionListener(new NextButtonListener());
         buttonContainer.add(next);
+	}
+	
+	class NextButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			new GraphView().Open();
+		}
+		
 	}
 	
 	public String readTranscript(){
