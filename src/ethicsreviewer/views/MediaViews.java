@@ -19,7 +19,7 @@ public class MediaViews {
 	// loads different media windows depending on the label clicked on
 	public void loadMedia(String labelName)
 	{
-		if(labelName.equals("Leveson starts speaking"))
+		if(labelName.equals("New evidence from Daily Telegraph"))
 		{
 			displayMediaWindow1();
 		}
@@ -53,7 +53,7 @@ public class MediaViews {
         
         
         JLabel mediaTitle = new JLabel();
-        mediaTitle.setText("Leveson starts speaking");
+        mediaTitle.setText("New evidence from Daily Telegraph");
         mediaTitle.setSize(new Dimension(200,50));
         mediaTitle.setFont(new Font("Arial",1,24));
         mediaTitle.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));

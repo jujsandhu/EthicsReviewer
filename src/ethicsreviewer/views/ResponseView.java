@@ -38,11 +38,11 @@ public class ResponseView {
         JPanel transcriptPanel = new JPanel();
         transcriptPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         transcriptPanel.setBackground(new Color(255,255,255));
-        transcriptPanel.setPreferredSize(new Dimension(500,400));
+        transcriptPanel.setPreferredSize(new Dimension(550,400));
         contentPane.add(transcriptPanel, BorderLayout.WEST);
         
-        JTextArea transcript = new JTextArea(15,50);
-        transcript.setText(readTranscript());
+        JTextArea transcript = new JTextArea(15,60);
+        transcript.setText(readTranscript("New evidence from Daily Telegraph.txt"));
         transcript.setLineWrap(true);
         transcript.setEditable(false);
         transcript.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
@@ -55,8 +55,8 @@ public class ResponseView {
         rulesTitle.setBorder(BorderFactory.createEmptyBorder(5,150,5,150));
         transcriptPanel.add(rulesTitle, BorderLayout.CENTER);
         
-        JTextArea rules = new JTextArea(15,50);
-        rules.setText(readTranscript());
+        JTextArea rules = new JTextArea(15,60);
+        rules.setText(readRules("New evidence from Daily Telegraph rules.txt"));
         rules.setLineWrap(true);
         rules.setEditable(false);
         rules.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
@@ -73,7 +73,7 @@ public class ResponseView {
         JLabel transcriptTitle = new JLabel("Transcript");
         transcriptTitle.setFont(new Font("Calibri", Font.PLAIN, 40));
         transcriptTitle.setForeground(Color.black);
-        transcriptTitle.setBorder(BorderFactory.createEmptyBorder(0, 165, 0, 0));
+        transcriptTitle.setBorder(BorderFactory.createEmptyBorder(0, 190, 0, 0));
         titleContainer.add(transcriptTitle, BorderLayout.WEST);
         
         
@@ -97,7 +97,7 @@ public class ResponseView {
 		textPanel.setLayout(new BorderLayout());
         textPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         textPanel.setBackground(new Color(255,255,255));
-        textPanel.setPreferredSize(new Dimension(480,700));
+        textPanel.setPreferredSize(new Dimension(440,700));
         contentPane.add(textPanel, BorderLayout.EAST);
         
         JPanel questionsPanel = new JPanel();
@@ -213,21 +213,40 @@ public class ResponseView {
 		
 	}
 	
-	public String readTranscript(){
+	public String readTranscript(String transcriptFileName){
 		String text = "";
 		String line = "";
 		
 		try{
-			BufferedReader reader = new BufferedReader(new FileReader("settings/transcript/transcript.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("settings/transcripts/" + transcriptFileName));
 			
 			while((line = reader.readLine()) != null)
 				text = text +"\n"+line;
 			
 			reader.close();
 			
-	}catch(Exception e){
-		e.printStackTrace();
-	 }
+	} catch(Exception e){
+		  e.printStackTrace();
+	}
+		
+		return text;
+   }
+	
+	public String readRules(String rulesFileName){
+		String text = "";
+		String line = "";
+		
+		try{
+			BufferedReader reader = new BufferedReader(new FileReader("settings/rules/" + rulesFileName));
+			
+			while((line = reader.readLine()) != null)
+				text = text +"\n"+line;
+			
+			reader.close();
+			
+	} catch(Exception e){
+		  e.printStackTrace();
+	}
 		
 		return text;
    }

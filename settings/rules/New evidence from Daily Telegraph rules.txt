@@ -1,0 +1,45 @@
+The interviewer must avoid the following:
+
+1 Ambiguous, confusing, misleading, vague, unintelligible: the question is not clear and precise enough for the witness to properly answer.
+
+2 Arguing the law: counsel is instructing the jury on the law.
+
+3 Argumentative: the question makes an argument rather than asking a question.
+
+4 Asked and answered: when the same attorney continues to ask the same question and they have already received an answer. Usually seen after direct, but not always.
+
+5 Asks the jury to prejudge the evidence: the jury cannot promise to vote a certain way, even if certain facts are proved.
+
+6 Asking a question which is not related to an intelligent exercise of a peremptory challenge or challenge for cause: if opposing counsel asks such a question during voir dire (i.e. the jury selection process.)
+
+7 Assumes facts not in evidence: the question assumes something as true for which no evidence has been shown.
+
+8 Badgering: counsel is antagonizing the witness in order to provoke a response, either by asking questions without giving the witness an opportunity to answer or by openly mocking the witness.
+
+9 Best evidence rule: requires that the original source of evidence is required, if available; for example, rather than asking a witness about the contents of a document, the actual document should be entered into evidence. Full original document should be introduced into evidence instead of a copy, but judges often allow copies if there is no dispute about authenticity. Some documents are exempt by hearsay rules of evidence.[2]
+
+10 Beyond the scope: A question asked during cross-examination has to be within the scope of direct, and so on.
+
+11 Calls for a conclusion: the question asks for an opinion rather than facts.
+
+12 Calls for speculation: the question asks the witness to guess the answer rather than to rely on known facts.
+
+13 Compound question: multiple questions asked together.
+
+14 Hearsay: the witness does not know the answer personally but heard it from another. However, there are several exceptions to the rule against hearsay in most legal systems.[2]
+
+15 Incompetent: the witness is not qualified to answer the question.
+
+16 Inflammatory: the question is intended to cause prejudice.
+
+17 Leading question (Direct examination only): the question suggests the answer to the witness. Leading questions are permitted if the attorney conducting the examination has received permission to treat the witness as a hostile witness. Leading questions are also permitted on cross-examination, as witnesses called by the opposing party are presumed hostile.
+
+18 Narrative: the question asks the witness to relate a story rather than state specific facts.
+
+19 Privilege: the witness may be protected by law from answering the question.
+
+20 Irrelevant or immaterial: the question is not about the issues in the trial.
+
+21 Misstates evidence / misquotes witness / improper characterization of evidence: this objection is often overruled, but can be used to signal a problem to witness, judge and jury.[3]
+
+22 Counsel is testifying: this is objection sometimes used when counsel is “leading” or “argumentative” or “assumes facts not in evidence.”
