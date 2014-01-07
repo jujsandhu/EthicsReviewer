@@ -46,6 +46,7 @@ public class LecturerLogin extends JPanel  {
  public LecturerLogin(final boolean clearPasswords, final boolean displayFailures, String initial_user, String initial_password) {
      final JPasswordField pswdField = new JPasswordField(DEFAULT_PSWD_CHARS);
      logButt = new JButton(LOG_IN);
+     
      KeyListener quickLogin = new KeyAdapter() {
          public void keyTyped(KeyEvent ke) {
              if(ke.getKeyChar() == KeyEvent.VK_ENTER) {
@@ -71,8 +72,8 @@ public class LecturerLogin extends JPanel  {
      JPanel row = new JPanel();
      row.setBorder(new EmptyBorder(5, 0, 5, 0));
      row.setBackground(new Color(255,255,255));
-     row.setOpaque(false);
-     row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
+     row.setOpaque(true);
+     //row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
      row.add(logButt);
      final Sessions startSession = new Sessions();
      
