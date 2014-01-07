@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
@@ -12,14 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import java.awt.event.ActionEvent;
-
-import javax.swing.SwingUtilities;
-
-import timeflow.app.TimeflowApp;
-import timeflow.format.file.FileExtensionCatalog;
-
-public class initialView extends JFrame implements ActionListener {
+public class InitialView extends JFrame implements ActionListener {
 
 	
 	/**
@@ -27,7 +21,7 @@ public class initialView extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public initialView(){
+	public InitialView(){
 	
 		//Create view
 		super("InitialView");
@@ -37,7 +31,7 @@ public class initialView extends JFrame implements ActionListener {
         JPanel contentPane = new JPanel();
         contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout());
-        contentPane.setPreferredSize(new Dimension(800,400));
+        contentPane.setPreferredSize(new Dimension(800,150));
         
         //middle panel
         JPanel element1 = new JPanel();
@@ -55,7 +49,7 @@ public class initialView extends JFrame implements ActionListener {
         //button panel
         JPanel buttonContainer = new JPanel();
         buttonContainer.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-        buttonContainer.setBackground(new Color(100,100,100));
+        buttonContainer.setBackground(new Color(255,255,255));
         buttonContainer.setPreferredSize(new Dimension(600,50));
         
        
@@ -103,7 +97,7 @@ public class initialView extends JFrame implements ActionListener {
             System.out.println("Opening Lecturer Login Panel");
             final String NOT_LOGGED_IN = "LoginPanel Test - Currently Logged Out";
             final JFrame frame = new JFrame(NOT_LOGGED_IN);
-            frame.getContentPane().add(new lecturerLogin());
+            frame.getContentPane().add(new LecturerLogin());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setLocationRelativeTo(null);
@@ -116,7 +110,7 @@ public class initialView extends JFrame implements ActionListener {
         	// Closes current and opens student login panel 
             dispose();
             System.out.println("Opening Student Login Panel");
-            new studentLogin(null, rootPaneCheckingEnabled, "Type in session passphrase");
+            new StudentLogin(null, rootPaneCheckingEnabled, "Type in session passphrase");
          }
      }
 	

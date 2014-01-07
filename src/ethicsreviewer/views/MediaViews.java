@@ -48,7 +48,7 @@ public class MediaViews {
         JPanel titleBar = new JPanel();
         titleBar.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         titleBar.setLayout(new BorderLayout());
-        titleBar.setBackground(new Color(100,100,100));
+        titleBar.setBackground(new Color(255,255,255));
         titleBar.setPreferredSize(new Dimension(1000,50));
         
         
@@ -66,27 +66,28 @@ public class MediaViews {
         ImageIcon image = new ImageIcon("images/LevesonInquiry.png");
         JLabel label = new JLabel("", image, JLabel.CENTER);
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setPreferredSize(new Dimension(1000,500));
+        panel.setBackground(new Color(255,255,255));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         panel.add(label, BorderLayout.CENTER);
         
         contentPane.add(panel, BorderLayout.CENTER);
         
         JPanel buttonsBar = new JPanel();
         buttonsBar.setLayout(new BorderLayout());
-        buttonsBar.setBackground(new Color(230,230,230));
-        buttonsBar.setPreferredSize(new Dimension(1000,50));
+        buttonsBar.setBackground(new Color(255,255,255));
+        buttonsBar.setPreferredSize(new Dimension(1000,90));
         
         
         JPanel backButtonContainer = new JPanel();
         backButtonContainer.setLayout(new BorderLayout());
-        backButtonContainer.setBorder(BorderFactory.createEmptyBorder(5, 200, 5, 200));
-        backButtonContainer.setBackground(new Color(150,150,150));
+        backButtonContainer.setBorder(BorderFactory.createEmptyBorder(20, 200, 20, 200));
+        backButtonContainer.setBackground(new Color(255,255,255));
         backButtonContainer.setPreferredSize(new Dimension(500,50));
         
         JPanel nextButtonContainer = new JPanel();
         nextButtonContainer.setLayout(new BorderLayout());
-        nextButtonContainer.setBorder(BorderFactory.createEmptyBorder(5, 200, 5, 200));
-        nextButtonContainer.setBackground(new Color(111,111,111));
+        nextButtonContainer.setBorder(BorderFactory.createEmptyBorder(20, 200, 20, 200));
+        nextButtonContainer.setBackground(new Color(255,255,255));
         nextButtonContainer.setPreferredSize(new Dimension(500,50));
         
         JButton backButton = new JButton();

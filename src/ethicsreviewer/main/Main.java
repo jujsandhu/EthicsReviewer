@@ -2,8 +2,7 @@ package ethicsreviewer.main;
 
 import javax.swing.SwingUtilities;
 
-import timeflow.format.file.TimeflowFormat;
-import ethicsreviewer.views.*;
+import ethicsreviewer.views.InitialView;
 
 public class Main {
 
@@ -15,7 +14,7 @@ public class Main {
             @Override
             public void run()
             {
-                new initialView().setVisible(true);
+                new InitialView().setVisible(true);
             	//new lecturerLogin().setVisible(true);
             }
 

@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class studentLogin extends JDialog implements ActionListener{
+public class StudentLogin extends JDialog implements ActionListener{
 	private JPanel myPanel = null;
     private JButton loginButton = null;
     private JButton noButton = null;
@@ -17,13 +17,14 @@ public class studentLogin extends JDialog implements ActionListener{
     private boolean answer = false;
     public boolean getAnswer() { return answer; }
     
-    public studentLogin(JFrame frame, boolean modal, String myMessage) {
+    public StudentLogin(JFrame frame, boolean modal, String myMessage) {
     	// Constructor creates dialog box and opens login panel
         super(frame, modal);
         myPanel = new JPanel();
         getContentPane().add(myPanel);
+        myPanel.setBackground(new Color(255,255,255));
         myPanel.add(new JLabel(myMessage));
-           
+        
         passPhrase = new JTextField("Enter Passphrase Here");
         passPhrase.setPreferredSize( new Dimension( 200, 24 ) );
         myPanel.add(passPhrase); 
@@ -45,7 +46,7 @@ public class studentLogin extends JDialog implements ActionListener{
             System.err.println("Logging in");
             if (passPhrase.getText().equals("Enter Passphrase Here")){
             	dispose();
-            	new studentLogin(null, rootPaneCheckingEnabled, "You need to type a passprahse");
+            	new StudentLogin(null, rootPaneCheckingEnabled, "You need to type a passprahse");
             	loginButton.setEnabled(false); 
               }
               else {

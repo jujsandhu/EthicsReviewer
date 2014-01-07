@@ -21,7 +21,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import timeflow.app.TimeflowApp;
-import timeflow.format.file.FileExtensionCatalog;
 
 public class Sessions {
 	
@@ -46,7 +45,7 @@ public class Sessions {
         //middle panel
         JPanel element1 = new JPanel();
         element1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        element1.setBackground(new Color(200,200,200));
+        element1.setBackground(new Color(255,255,255));
         element1.setPreferredSize(new Dimension(100,100));
 		
         createTable(element1, contentPane);
@@ -55,12 +54,12 @@ public class Sessions {
         JPanel titleContainer = new JPanel(null);
         titleContainer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         titleContainer.setLayout(new BorderLayout());
-        titleContainer.setBackground(new Color(100,100,100));
+        titleContainer.setBackground(new Color(255,255,255));
         titleContainer.setPreferredSize(new Dimension(600,50));
         
         JLabel title = new JLabel("Timeline Sessions");
         title.setFont(new Font("Calibri", Font.PLAIN, 40));
-        title.setForeground(Color.white);
+        title.setForeground(Color.black);
         title.setLocation(0,400);
         titleContainer.add(title, BorderLayout.CENTER);
         contentPane.add(titleContainer, BorderLayout.NORTH);
@@ -68,7 +67,7 @@ public class Sessions {
         //button panel
         JPanel buttonContainer = new JPanel();
         buttonContainer.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-        buttonContainer.setBackground(new Color(100,100,100));
+        buttonContainer.setBackground(new Color(255,255,255));
         buttonContainer.setPreferredSize(new Dimension(600,50));
         
         JButton view = new JButton("View");

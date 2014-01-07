@@ -36,16 +36,16 @@ public class GraphView {
         contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         contentPane.setBackground(new Color(255,255,255));
         contentPane.setLayout(new BorderLayout());
-        contentPane.setPreferredSize(new Dimension(1000,700));
+        contentPane.setPreferredSize(new Dimension(1000,765));
         
         JPanel responsePanel = new JPanel();
         responsePanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        responsePanel.setBackground(new Color(200,200,200));
+        responsePanel.setBackground(new Color(255,255,255));
         responsePanel.setPreferredSize(new Dimension(500,400));
         contentPane.add(responsePanel, BorderLayout.WEST);
        
       //response text area
-        JTextArea responses = new JTextArea(37,37);
+        JTextArea responses = new JTextArea(37,50);
         responses.setText(readResponses());
         responses.setLineWrap(true);
         responses.setEditable(false);
@@ -59,19 +59,19 @@ public class GraphView {
         JPanel titleContainer = new JPanel(null);
         titleContainer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         titleContainer.setLayout(new BorderLayout());
-        titleContainer.setBackground(new Color(100,100,100));
+        titleContainer.setBackground(new Color(255,255,255));
         titleContainer.setPreferredSize(new Dimension(600,50));
         
         JLabel responseTitle = new JLabel("Response");
         responseTitle.setFont(new Font("Calibri", Font.PLAIN, 40));
-        responseTitle.setForeground(Color.white);
+        responseTitle.setForeground(Color.black);
         responseTitle.setBorder(BorderFactory.createEmptyBorder(0, 165, 0, 0));
         titleContainer.add(responseTitle, BorderLayout.WEST);
         
         
         JLabel graphTitle = new JLabel("Select Graph");
         graphTitle.setFont(new Font("Calibri", Font.PLAIN, 40));
-        graphTitle.setForeground(Color.white);
+        graphTitle.setForeground(Color.black);
         graphTitle.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 130));
         titleContainer.add(graphTitle, BorderLayout.EAST);
         contentPane.add(titleContainer, BorderLayout.NORTH);
@@ -154,12 +154,13 @@ public class GraphView {
 			BufferedReader reader = new BufferedReader(new FileReader("settings/transcript/response_temporary.txt"));
 			
 			while((line = reader.readLine()) != null)
-			{
 				text = text +"\n"+line;
-			}
-	}catch(Exception e){
-		e.printStackTrace();
-	 }
+			
+			reader.close();
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		return text;
    }

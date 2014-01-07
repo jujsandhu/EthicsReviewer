@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class lecturerLogin extends JPanel  {
+public class LecturerLogin extends JPanel  {
 	 public final static String
      LOG_IN  = "Login",
      LOG_OUT = "Logout";
@@ -30,11 +30,11 @@ public class lecturerLogin extends JPanel  {
  public void loggedOut(String uname) {
  }
 
- public lecturerLogin() {
+ public LecturerLogin() {
      this(false);
  }
 
- public lecturerLogin(final boolean clearPasswords) {
+ public LecturerLogin(final boolean clearPasswords) {
      this(clearPasswords, true, null, null);
  }
 
@@ -43,7 +43,7 @@ public class lecturerLogin extends JPanel  {
   * @param initial_user optional default text to load into the 'user' type-in.
   * @param initial_password optional default text to load into the 'password' type-in.
   */
- public lecturerLogin(final boolean clearPasswords, final boolean displayFailures, String initial_user, String initial_password) {
+ public LecturerLogin(final boolean clearPasswords, final boolean displayFailures, String initial_user, String initial_password) {
      final JPasswordField pswdField = new JPasswordField(DEFAULT_PSWD_CHARS);
      logButt = new JButton(LOG_IN);
      KeyListener quickLogin = new KeyAdapter() {
@@ -70,10 +70,10 @@ public class lecturerLogin extends JPanel  {
      // create login button row
      JPanel row = new JPanel();
      row.setBorder(new EmptyBorder(5, 0, 5, 0));
+     row.setBackground(new Color(255,255,255));
      row.setOpaque(false);
      row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
      row.add(logButt);
-     logButt.setBackground(new Color(220,220,220));
      final Sessions startSession = new Sessions();
      
      logButt.addActionListener(new ActionListener() {
@@ -99,7 +99,7 @@ public class lecturerLogin extends JPanel  {
                  }
                  else
                      if(displayFailures)
-                         JOptionPane.showMessageDialog(lecturerLogin.this, "Login Denied", "Login Error", JOptionPane.ERROR_MESSAGE);
+                         JOptionPane.showMessageDialog(LecturerLogin.this, "Login Denied", "Login Error", JOptionPane.ERROR_MESSAGE);
              }
              else {
             	 
@@ -159,7 +159,7 @@ public class lecturerLogin extends JPanel  {
  public static void main(String[] args) {
      final String NOT_LOGGED_IN = "LoginPanel Test - Currently Logged Out";
      final JFrame frame = new JFrame(NOT_LOGGED_IN);
-     frame.getContentPane().add(new lecturerLogin() {
+     frame.getContentPane().add(new LecturerLogin() {
          public boolean approveLogin(String uname, String pswd) {
              // this is where to make the server call to approve or reject login attempt
              frame.setTitle("LoginPanel Test - Currently logged in as " + uname);
