@@ -11,6 +11,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -40,6 +42,8 @@ public class GraphView {
 	private JLabel groupAText, groupBText, groupCText, instructionText;
 	private JLabel response1, response2, response3, response4, response5, response6, response7, response8, response9;
 	private JButton groupADrop, groupBDrop, groupCDrop, draw;
+	
+	private static JComponent component;
 	
 	public void Open(){
 		
@@ -127,34 +131,6 @@ public class GraphView {
         		" put questions to the inquiry council.</html>");
         responses.add(response9);
         
-        
-        MouseListener listener = new DragMouseAdapter();
-        response1.addMouseListener(listener);
-        response2.addMouseListener(listener);
-        response3.addMouseListener(listener);
-        response4.addMouseListener(listener);
-        response5.addMouseListener(listener);
-        response6.addMouseListener(listener);
-        response7.addMouseListener(listener);
-        response8.addMouseListener(listener);
-        response9.addMouseListener(listener);
-        
-        /*
-        response1.setTransferHandler(new TransferHandler("icon"));
-        response2.setTransferHandler(new TransferHandler("icon"));
-        response3.setTransferHandler(new TransferHandler("icon"));
-        response4.setTransferHandler(new TransferHandler("icon"));
-        response5.setTransferHandler(new TransferHandler("icon"));
-        response6.setTransferHandler(new TransferHandler("icon"));
-        response7.setTransferHandler(new TransferHandler("icon"));
-        response8.setTransferHandler(new TransferHandler("icon"));
-        response9.setTransferHandler(new TransferHandler("icon"));
-        */
-        /*
-        groupADrop.setTransferHandler(new TransferHandler("text"));
-        groupBDrop.setTransferHandler(new TransferHandler("text"));
-        groupCDrop.setTransferHandler(new TransferHandler("text"));
-        */
         
       //title panel
         titleContainer = new JPanel(null);
@@ -263,6 +239,7 @@ public class GraphView {
 		
 		groupAText = new JLabel("Group A");
 		groupAText.setFont(new Font("Calibri", Font.ITALIC, 25));
+		groupAText.setForeground(Color.blue);
 		groupAText.setBorder(BorderFactory.createEmptyBorder(0, 135, 0, 0));
 		
 		groupAContainer.add(groupAText, BorderLayout.NORTH);
@@ -292,6 +269,7 @@ public class GraphView {
 		
 		groupBText = new JLabel("Group B");
 		groupBText.setFont(new Font("Calibri", Font.ITALIC, 25));
+		groupBText.setForeground(Color.red);
 		groupBText.setBorder(BorderFactory.createEmptyBorder(0, 135, 0, 0));
 		
 		groupBContainer.add(groupBText, BorderLayout.NORTH);
@@ -310,8 +288,6 @@ public class GraphView {
         groupBDropContainer.add(groupBDrop);
         
         
-        
-        
         groupCContainer = new JPanel(null);
 		groupCContainer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		groupCContainer.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -322,6 +298,7 @@ public class GraphView {
 		
 		groupCText = new JLabel("Group C");
 		groupCText.setFont(new Font("Calibri", Font.ITALIC, 25));
+		groupCText.setForeground(Color.green);
 		groupCText.setBorder(BorderFactory.createEmptyBorder(0, 135, 0, 0));
 		
 		groupCContainer.add(groupCText, BorderLayout.NORTH);
@@ -339,8 +316,48 @@ public class GraphView {
         
         groupCDropContainer.add(groupCDrop);
         
+        PropertyChangeListener a = new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				component.setForeground(Color.blue);
+				responses.revalidate();
+				responses.repaint();
+				
+				groupADrop.setText("A");
+			}
+        };
         
+        groupADrop.addPropertyChangeListener("text", a);
         
+        PropertyChangeListener b = new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				component.setForeground(Color.red);
+				responses.revalidate();
+				responses.repaint();
+				
+				groupBDrop.setText("B");
+			}
+        };
+        
+        groupBDrop.addPropertyChangeListener("text", b);
+        
+        PropertyChangeListener c = new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				component.setForeground(Color.green);
+				responses.revalidate();
+				responses.repaint();
+				
+				groupCDrop.setText("C");
+			}
+        };
+        
+        groupCDrop.addPropertyChangeListener("text", c);
+      
         
         
         //buttonPanel
@@ -358,7 +375,36 @@ public class GraphView {
         drawButtonContainer.add(draw);
         
         
+        MouseListener listener = new DragMouseAdapter();
+        response1.addMouseListener(listener);
+        response2.addMouseListener(listener);
+        response3.addMouseListener(listener);
+        response4.addMouseListener(listener);
+        response5.addMouseListener(listener);
+        response6.addMouseListener(listener);
+        response7.addMouseListener(listener);
+        response8.addMouseListener(listener);
+        response9.addMouseListener(listener);
         
+        groupADrop.addMouseListener(listener);
+        groupBDrop.addMouseListener(listener);
+        groupCDrop.addMouseListener(listener);
+        
+        
+        response1.setTransferHandler(new TransferHandler("text"));
+        response2.setTransferHandler(new TransferHandler("text"));
+        response3.setTransferHandler(new TransferHandler("text"));
+        response4.setTransferHandler(new TransferHandler("text"));
+        response5.setTransferHandler(new TransferHandler("text"));
+        response6.setTransferHandler(new TransferHandler("text"));
+        response7.setTransferHandler(new TransferHandler("text"));
+        response8.setTransferHandler(new TransferHandler("text"));
+        response9.setTransferHandler(new TransferHandler("text"));
+        
+        
+        groupADrop.setTransferHandler(new TransferHandler("text"));
+        groupBDrop.setTransferHandler(new TransferHandler("text"));
+        groupCDrop.setTransferHandler(new TransferHandler("text"));
 		
 	}
 	
@@ -374,14 +420,11 @@ public class GraphView {
 	}
 	
 	class DragMouseAdapter extends MouseAdapter {
+		
         public void mousePressed(MouseEvent e) {
-            JComponent c = (JComponent) e.getSource();
-            TransferHandler handler = c.getTransferHandler();
-            handler.exportAsDrag(c, e, TransferHandler.COPY);
-        }
-        
-		public void mouseReleased(MouseEvent e) {
-        	
+        	component = (JComponent) e.getSource();
+            TransferHandler handler = component.getTransferHandler();
+            handler.exportAsDrag(component, e, TransferHandler.COPY);
         }
         
     }
@@ -437,11 +480,6 @@ public class GraphView {
 			
 			graphPanel.setVisible(false);
 			setUpGroupingPanel(contentPane);
-			
-			response1.setForeground(Color.blue);
-			
-			responses.revalidate();
-			responses.repaint();
 			
 		}
 
