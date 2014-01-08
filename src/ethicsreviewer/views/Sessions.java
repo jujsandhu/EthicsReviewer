@@ -41,21 +41,23 @@ public class Sessions {
         contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout());
         contentPane.setPreferredSize(new Dimension(800,400));
+        contentPane.setBackground(Color.white);
         
         //middle panel
         JPanel element1 = new JPanel();
         element1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        element1.setBackground(new Color(255,255,255));
+        element1.setBackground(Color.WHITE);
         element1.setPreferredSize(new Dimension(100,100));
-		
+       
         createTable(element1, contentPane);
         
         //title panel
         JPanel titleContainer = new JPanel(null);
         titleContainer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         titleContainer.setLayout(new BorderLayout());
-        titleContainer.setBackground(new Color(255,255,255));
+        titleContainer.setBackground(Color.white);
         titleContainer.setPreferredSize(new Dimension(600,50));
+
         
         JLabel title = new JLabel("Timeline Sessions");
         title.setFont(new Font("Calibri", Font.PLAIN, 40));
@@ -67,7 +69,7 @@ public class Sessions {
         //button panel
         JPanel buttonContainer = new JPanel();
         buttonContainer.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-        buttonContainer.setBackground(new Color(255,255,255));
+        buttonContainer.setBackground(Color.white);
         buttonContainer.setPreferredSize(new Dimension(600,50));
         
         JButton view = new JButton("View");
@@ -77,8 +79,9 @@ public class Sessions {
         JButton remove = new JButton("Remove");
         buttonContainer.add(remove);
         
-        JButton start = new JButton("New");
-        buttonContainer.add(start);
+        JButton create = new JButton("New");
+        create.addActionListener(new createButtonListener());
+        buttonContainer.add(create);
         contentPane.add(buttonContainer, BorderLayout.SOUTH);
         
         frame.setContentPane(contentPane);
@@ -107,6 +110,7 @@ public class Sessions {
 		element1.add(scroll);
 		contentPane.add(element1, BorderLayout.CENTER);
 		getData();
+		table.setBackground(Color.white);
 	}
 	
 	public String[][] getData(){
@@ -123,8 +127,12 @@ public class Sessions {
 		String[] s=new File(dir).list();
 		ArrayList<String> real=new ArrayList<String>();
 		for (int i=0; i<s.length; i++)
-			if (!s[i].startsWith("."))
-				real.add(s[i]);
+			if (!s[i].startsWith(".")){
+
+				if (s[i].endsWith("time")){real.add(s[i].substring(0, s[i].length()-5) + "~");}
+				if (s[i].endsWith("start")){real.add(s[i].substring(0, s[i].length()-6) + "`");}
+				}
+				
 		return (String[])real.toArray(new String[0]);
 	}
 	
@@ -135,9 +143,19 @@ public class Sessions {
 		public void actionPerformed(ActionEvent e) {
 			if(row >= 0){
 				final TimeflowApp t=new TimeflowApp();
-				file = "settings/examples/"+examples[row];
+				int length = examples[row].length();
+				if (examples[row].endsWith("~")){file = "settings/examples/"+examples[row].substring(0, length -1) + ".time";}
+				if (examples[row].endsWith("`")){file = "settings/examples/"+examples[row].substring(0, length -1) + ".start";}
 				timeflow.app.TimeflowAppLauncher.launch(file);
 			}	
+		}
+	}
+	
+	
+	class createButtonListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+				new AddSessionFormView();
 		}
 	}
 	
