@@ -62,7 +62,8 @@ public class Sessions {
         JLabel title = new JLabel("Timeline Sessions");
         title.setFont(new Font("Calibri", Font.PLAIN, 40));
         title.setForeground(Color.black);
-        title.setLocation(0,400);
+        title.setHorizontalAlignment(JLabel.CENTER);
+        title.setVerticalAlignment(JLabel.CENTER);
         titleContainer.add(title, BorderLayout.CENTER);
         contentPane.add(titleContainer, BorderLayout.NORTH);
         

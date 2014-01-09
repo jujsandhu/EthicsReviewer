@@ -2,6 +2,7 @@ package ethicsreviewer.views;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -75,6 +76,16 @@ public class LecturerLogin extends JPanel  {
      row.setOpaque(true);
      //row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
      row.add(logButt);
+     
+    //Create title
+     JLabel title = new JLabel("Lecturer Login");
+     JPanel titlerow = new JPanel();
+     titlerow.setBorder(new EmptyBorder(5, 0, 5, 0));
+     titlerow.setBackground(new Color(255,255,255));
+     titlerow.setOpaque(true);
+     //row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
+     titlerow.add(title);
+     
      final Sessions startSession = new Sessions();
      
      logButt.addActionListener(new ActionListener() {
@@ -129,6 +140,7 @@ public class LecturerLogin extends JPanel  {
 
      // construct final layout
      setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+     add(titlerow);
      add(grid);
      add(row);
  }
