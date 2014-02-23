@@ -3,6 +3,8 @@ package ethicsreviewer.views;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import ethicsreviewer.controller.Login;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -47,6 +49,7 @@ public class LecturerLogin extends JPanel  {
  public LecturerLogin(final boolean clearPasswords, final boolean displayFailures, String initial_user, String initial_password) {
      final JPasswordField pswdField = new JPasswordField(DEFAULT_PSWD_CHARS);
      logButt = new JButton(LOG_IN);
+     final Login login = new Login();
      
      KeyListener quickLogin = new KeyAdapter() {
          public void keyTyped(KeyEvent ke) {
@@ -88,26 +91,15 @@ public class LecturerLogin extends JPanel  {
      
      final Sessions startSession = new Sessions();
      
+     
      logButt.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent ae) {
              if(logButt.getText().equals(LOG_IN)) {
                  // seek login approval from derived class
-                 if(approveLogin(nameField.getText(), new String(pswdField.getPassword()))) {
-                     // note: must set logout text *before* clearing password
-                     // otherwise component dependancy handler will disable the
-                     // login button w/out password text before later setting logout text
-                     // this closes bug #2336
+                 if(login.verifyPassword(nameField.getText(), new String(pswdField.getPassword()))) {
                 	 
                      startSession.openScreen();
-                	
-                	 /*
-                     logButt.setText(LOG_OUT);
-                     if(clearPasswords)
-                         pswdField.setText(null);
-                     nameField.setEnabled(false);
-                     pswdField.setEnabled(false);
-                     fireLoginEvent(nameField.getText(), true);
-                     */
+
                  }
                  else
                      if(displayFailures)

@@ -41,7 +41,7 @@ public class ResponseView {
         transcriptPanel.setPreferredSize(new Dimension(550,400));
         contentPane.add(transcriptPanel, BorderLayout.WEST);
         
-        JTextArea transcript = new JTextArea(15,60);
+        JTextArea transcript = new JTextArea(15,38);
         transcript.setText(readTranscript("New evidence from Daily Telegraph.txt"));
         transcript.setLineWrap(true);
         transcript.setEditable(false);
@@ -55,7 +55,7 @@ public class ResponseView {
         rulesTitle.setBorder(BorderFactory.createEmptyBorder(5,150,5,150));
         transcriptPanel.add(rulesTitle, BorderLayout.CENTER);
         
-        JTextArea rules = new JTextArea(15,60);
+        JTextArea rules = new JTextArea(15,38);
         rules.setText(readRules("New evidence from Daily Telegraph rules.txt"));
         rules.setLineWrap(true);
         rules.setEditable(false);
