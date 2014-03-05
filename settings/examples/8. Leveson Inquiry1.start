@@ -1,6 +1,7 @@
 #TIMEFLOW	format version	1
 #TIMEFLOW	source	Unspecified
 #TIMEFLOW	description	
+#TIMEFLOW	field	ID	Number
 #TIMEFLOW	field	Date	Date/Time
 #TIMEFLOW	field	Label	Text	73
 #TIMEFLOW	field	Description	Text	486
@@ -12,22 +13,22 @@
 #TIMEFLOW	alias	TIMEFLOW_COLOR	Label
 #TIMEFLOW	alias	Interviewer	Speaker/Interviewer
 #TIMEFLOW	====== End of Header. Data below is in tab-delimited format. =====
-Date	Label	Description	Speaker/Interviewer	Interviewee
-Mar 15 2012	New evidence from Daily Telegraph	Johnathon Caplan addresses new evidence, Clive Driscoll called to the witness box	Johnathon Caplan, Lord Justice Leveson	Detective Cheif Inspector Clive Driscoll
-Feb 20 2013	Leveson stops speaking	Leveson finishes speaking		
-Jul 13 2011	Prime Minister announces a two-part inquiry	The Prime Minister announced a two-part inquiry investigating the role of the press and police in the phone-hacking scandal, on 13 July 2011. Lord Justice Leveson was appointed as Chairman of the Inquiry.		
-Nov 14 2011	Lord Justice Leveson opens the hearings	Lord Justice Leveson opened the hearings on 14 November 2011, saying: “The press provides an essential check on all aspects of public life. That is why any failure within the media affects all of us. At the heart of this Inquiry, therefore, may be one simple question: who guards the guardians?”  A wide range of witnesses, including newspaper reporters, management, proprietors, police officers and politicians of all parties, all gave evidence to the Inquiry under oath and in public.	Lord Justice Leveson	
-Nov 29 2012	Lord Justice Leveson publishes his Report	Lord Justice Leveson published his Report on Part 1 of the Inquiry on 29 November 2012.		
-Jul 10 2012	Hearing: Tuesday 10 July 2012 Morning session 		Lord Justice Leveson	Lord Hunt  Michelle Stanistreet  Professor Chris Frost
-Jul 12 2012	Hearing Thursday 12 July 2012 Morning session			Colette Bowe  Ed Richards  Professor Roy Greenslade  Tim Suter
-Jul 10 2012	Hearing Friday 13 July 2012 Morning session		Lord Justice Leveson	Angela Phillips  Professor James Curran  Professor John Horgan
-Jun 12 2012	Hearing Tuesday 12 June 2012 Morning session		Lord Justice Leveson	Sir John Major
-May 24 2012	Hearing Thursday 24 May 2012 Afternoon session		Lord Justice Leveson	Adam Smith  Frederic Michel
-Apr 4 2012	Hearing Wednesday 4 April 2012 Afternoon session		Lord Justice Leveson	Keir Starmer QC
-Mar 12 2012	Hearing Monday 12 March 2012 Afternoon session		Lord Justice Leveson	Sir Dennis O'Connor
-Jan 24 2012	Hearing Tuesday 24 January 2012 Morning session		Lord Justice Leveson	Anna Van Heeswijk  Heather Harvey  Jacqui Hunt  John Kampfner  Jonathan Heawood  Marai Larasi
-Dec 14 2011	Hearing Wednesday 14 December 2011 Morning session		Lord Justice Leveson	Jonathan Chapman  Tom Crone
-Mar 26 2012	Ruling in relation to the evidence of Mr Peter Tickner and Mr Ian Hurst  	"On 26 March 2012, Lord Justice Leveson gave a ruling in relation to the evidence of Mr Peter Tickner and Mr Ian Hurst:
+ID	Date	Label	Description	Speaker/Interviewer	Interviewee
+1.0	Mar 15 2012	New evidence from Daily Telegraph	Johnathon Caplan addresses new evidence, Clive Driscoll called to the witness box	Johnathon Caplan, Lord Justice Leveson	Detective Cheif Inspector Clive Driscoll
+2.0	Feb 20 2013	Leveson stops speaking	Leveson finishes speaking		
+3.0	Jul 13 2011	Prime Minister announces a two-part inquiry	The Prime Minister announced a two-part inquiry investigating the role of the press and police in the phone-hacking scandal, on 13 July 2011. Lord Justice Leveson was appointed as Chairman of the Inquiry.		
+4.0	Nov 14 2011	Lord Justice Leveson opens the hearings	Lord Justice Leveson opened the hearings on 14 November 2011, saying: ÒThe press provides an essential check on all aspects of public life. That is why any failure within the media affects all of us. At the heart of this Inquiry, therefore, may be one simple question: who guards the guardians?Ó  A wide range of witnesses, including newspaper reporters, management, proprietors, police officers and politicians of all parties, all gave evidence to the Inquiry under oath and in public.	Lord Justice Leveson	
+5.0	Nov 29 2012	Lord Justice Leveson publishes his Report	Lord Justice Leveson published his Report on Part 1 of the Inquiry on 29 November 2012.		
+6.0	Jul 10 2012	Hearing: Tuesday 10 July 2012 Morning session 		Lord Justice Leveson	Lord Hunt  Michelle Stanistreet  Professor Chris Frost
+7.0	Jul 12 2012	Hearing Thursday 12 July 2012 Morning session			Colette Bowe  Ed Richards  Professor Roy Greenslade  Tim Suter
+8.0	Jul 10 2012	Hearing Friday 13 July 2012 Morning session		Lord Justice Leveson	Angela Phillips  Professor James Curran  Professor John Horgan
+9.0	Jun 12 2012	Hearing Tuesday 12 June 2012 Morning session		Lord Justice Leveson	Sir John Major
+10.0	May 24 2012	Hearing Thursday 24 May 2012 Afternoon session		Lord Justice Leveson	Adam Smith  Frederic Michel
+11.0	Apr 4 2012	Hearing Wednesday 4 April 2012 Afternoon session		Lord Justice Leveson	Keir Starmer QC
+12.0	Mar 12 2012	Hearing Monday 12 March 2012 Afternoon session		Lord Justice Leveson	Sir Dennis O'Connor
+13.0	Jan 24 2012	Hearing Tuesday 24 January 2012 Morning session		Lord Justice Leveson	Anna Van Heeswijk  Heather Harvey  Jacqui Hunt  John Kampfner  Jonathan Heawood  Marai Larasi
+14.0	Dec 14 2011	Hearing Wednesday 14 December 2011 Morning session		Lord Justice Leveson	Jonathan Chapman  Tom Crone
+15.0	Mar 26 2012	Ruling in relation to the evidence of Mr Peter Tickner and Mr Ian Hurst  	"On 26 March 2012, Lord Justice Leveson gave a ruling in relation to the evidence of Mr Peter Tickner and Mr Ian Hurst:
 
 "	Lord Justice Leveson	
-Jun 11 2012	Ruling In Relation to Operation Motorman Evidence	On 11 June 2012 Lord Justice Leveson gave a ruling in relation to Operation Motorman Evidence:	Lord Justice Leveson 	
+16.0	Jun 11 2012	Ruling In Relation to Operation Motorman Evidence	On 11 June 2012 Lord Justice Leveson gave a ruling in relation to Operation Motorman Evidence:	Lord Justice Leveson 	

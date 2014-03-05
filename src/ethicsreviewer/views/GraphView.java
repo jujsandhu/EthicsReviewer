@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -30,6 +31,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.TransferHandler;
 
+import ethicsreviewer.controller.Response;
 import ethicsreviewer.graphs.PieChart;
 
 public class GraphView {
@@ -40,8 +42,10 @@ public class GraphView {
 	private JPanel responsesContainer;
 	private JLabel responseTitle, graphTitle, groupText, groupLabel, barText, barLabel, pieText, pieLabel;
 	private JLabel groupAText, groupBText, groupCText, instructionText;
-	private JLabel response1, response2, response3, response4, response5, response6, response7, response8, response9;
+	//private JLabel response1, response2, response3, response4, response5, response6, response7, response8, response9;
 	private JButton groupADrop, groupBDrop, groupCDrop, draw;
+	
+	JLabel[] responsePanels;
 	
 	private static JComponent component;
 	
@@ -94,42 +98,52 @@ public class GraphView {
         instructionText.setBorder(BorderFactory.createEmptyBorder(5, 50, 5, 5));
         
         responsePanel.add(instructionText, BorderLayout.NORTH);
+        
+        //will be changed, lecturer will select which question number to show
+        ArrayList<String> responseList = Response.getResponseByQuestionNum(1);
  
-        response1 = addResponse("<html>I think that he should have taken some<br>more time to" +
-        		" put questions to the inquiry council.</html>");
-        responses.add(response1);
+        responsePanels = new JLabel[responseList.size()];
         
-        response2 = addResponse("<html>I think that he should have taken some<br>more time to" +
-        		" put questions to the inquiry council.</html>");
-        responses.add(response2);
+        for(int i = 0; i<responseList.size();i++ ){
+        	responsePanels[i] = addResponse("<html>" +responseList.get(i)+ "<html>");
+        	responses.add(responsePanels[i]);
+        }
         
-        response3 = addResponse("<html>I think that he should have taken some<br>more time to" +
-        		" put questions to the inquiry council.</html>");
-        responses.add(response3);
-        
-        response4 = addResponse("<html>I think that he should have taken some<br>more time to" +
-        		" put questions to the inquiry council.</html>");
-        responses.add(response4);
-        
-        response5 = addResponse("<html>I think that he should have taken some<br>more time to" +
-        		" put questions to the inquiry council.</html>");
-        responses.add(response5);
-        
-        response6 = addResponse("<html>I think that he should have taken some<br>more time to" +
-        		" put questions to the inquiry council.</html>");
-        responses.add(response6);
-        
-        response7 = addResponse("<html>I think that he should have taken some<br>more time to" +
-        		" put questions to the inquiry council.</html>");
-        responses.add(response7);
-        
-        response8 = addResponse("<html>I think that he should have taken some<br>more time to" +
-        		" put questions to the inquiry council.</html>");
-        responses.add(response8);
-        
-        response9 = addResponse("<html>I think that he should have taken some<br>more time to" +
-        		" put questions to the inquiry council.</html>");
-        responses.add(response9);
+//        response1 = addResponse("<html>I think that he should have taken some<br>more time to" +
+//        		" put questions to the inquiry council.</html>");
+//        responses.add(response1);
+//        
+//        response2 = addResponse("<html>I think that he should have taken some<br>more time to" +
+//        		" put questions to the inquiry council.</html>");
+//        responses.add(response2);
+//        
+//        response3 = addResponse("<html>I think that he should have taken some<br>more time to" +
+//        		" put questions to the inquiry council.</html>");
+//        responses.add(response3);
+//        
+//        response4 = addResponse("<html>I think that he should have taken some<br>more time to" +
+//        		" put questions to the inquiry council.</html>");
+//        responses.add(response4);
+//        
+//        response5 = addResponse("<html>I think that he should have taken some<br>more time to" +
+//        		" put questions to the inquiry council.</html>");
+//        responses.add(response5);
+//        
+//        response6 = addResponse("<html>I think that he should have taken some<br>more time to" +
+//        		" put questions to the inquiry council.</html>");
+//        responses.add(response6);
+//        
+//        response7 = addResponse("<html>I think that he should have taken some<br>more time to" +
+//        		" put questions to the inquiry council.</html>");
+//        responses.add(response7);
+//        
+//        response8 = addResponse("<html>I think that he should have taken some<br>more time to" +
+//        		" put questions to the inquiry council.</html>");
+//        responses.add(response8);
+//        
+//        response9 = addResponse("<html>I think that he should have taken some<br>more time to" +
+//        		" put questions to the inquiry council.</html>");
+//        responses.add(response9);
         
         
       //title panel
@@ -376,30 +390,36 @@ public class GraphView {
         
         
         MouseListener listener = new DragMouseAdapter();
-        response1.addMouseListener(listener);
-        response2.addMouseListener(listener);
-        response3.addMouseListener(listener);
-        response4.addMouseListener(listener);
-        response5.addMouseListener(listener);
-        response6.addMouseListener(listener);
-        response7.addMouseListener(listener);
-        response8.addMouseListener(listener);
-        response9.addMouseListener(listener);
+        for(int i = 0; i<responsePanels.length;i++){
+        	responsePanels[i].addMouseListener(listener);
+        }
+//        response1.addMouseListener(listener);
+//        response2.addMouseListener(listener);
+//        response3.addMouseListener(listener);
+//        response4.addMouseListener(listener);
+//        response5.addMouseListener(listener);
+//        response6.addMouseListener(listener);
+//        response7.addMouseListener(listener);
+//        response8.addMouseListener(listener);
+//        response9.addMouseListener(listener);
         
         groupADrop.addMouseListener(listener);
         groupBDrop.addMouseListener(listener);
         groupCDrop.addMouseListener(listener);
         
+        for(int i = 0; i<responsePanels.length;i++){
+        	responsePanels[i].setTransferHandler(new TransferHandler("text"));
+        }
         
-        response1.setTransferHandler(new TransferHandler("text"));
-        response2.setTransferHandler(new TransferHandler("text"));
-        response3.setTransferHandler(new TransferHandler("text"));
-        response4.setTransferHandler(new TransferHandler("text"));
-        response5.setTransferHandler(new TransferHandler("text"));
-        response6.setTransferHandler(new TransferHandler("text"));
-        response7.setTransferHandler(new TransferHandler("text"));
-        response8.setTransferHandler(new TransferHandler("text"));
-        response9.setTransferHandler(new TransferHandler("text"));
+//        response1.setTransferHandler(new TransferHandler("text"));
+//        response2.setTransferHandler(new TransferHandler("text"));
+//        response3.setTransferHandler(new TransferHandler("text"));
+//        response4.setTransferHandler(new TransferHandler("text"));
+//        response5.setTransferHandler(new TransferHandler("text"));
+//        response6.setTransferHandler(new TransferHandler("text"));
+//        response7.setTransferHandler(new TransferHandler("text"));
+//        response8.setTransferHandler(new TransferHandler("text"));
+//        response9.setTransferHandler(new TransferHandler("text"));
         
         
         groupADrop.setTransferHandler(new TransferHandler("text"));

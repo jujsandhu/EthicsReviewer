@@ -253,6 +253,7 @@ public class VisualAct implements Comparable
 					String valString=display.toString(val);
 					if (f.getName().length()+valString.length()+2>charWidth)
 					{
+						//System.out.println(valString);
 						ArrayList<String> lines=Display.breakLines(valString, charWidth, 2+f.getName().length());
 						labels.add(lines);
 						numLines+=lines.size()+1;

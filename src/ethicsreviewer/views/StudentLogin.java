@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import ethicsreviewer.controller.Login;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -43,8 +45,9 @@ public class StudentLogin extends JDialog implements ActionListener{
     public void actionPerformed(ActionEvent e) {
     	// Checks is input has changed
         if(loginButton == e.getSource()) {
+        	Login login = new Login();
             System.err.println("Logging in");
-            if (passPhrase.getText().equals("Enter Passphrase Here")){
+            if (login.verifyPassphrase(passPhrase.getText()) == false){
             	dispose();
             	new StudentLogin(null, rootPaneCheckingEnabled, "You need to type a passprahse");
             	loginButton.setEnabled(false); 

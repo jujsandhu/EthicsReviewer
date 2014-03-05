@@ -20,15 +20,21 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import ethicsreviewer.controller.CurrentSession;
+
 import timeflow.app.TimeflowApp;
 
 public class Sessions {
 	
 	private int row;
 	String[] examples;
+	private int sessionID;
+	private CurrentSession session;
 	
 	public Sessions(){
 		row = -1;
+		sessionID = -1;
+		session = new CurrentSession();
 	}
 	
 	public void openScreen(){
@@ -92,10 +98,10 @@ public class Sessions {
 	}
 
 	public void createTable(JPanel element1, JPanel contentPane){
-		String columnNames[] = {"Description","Date","Time","Focus Group"};
+		String columnNames[] = {"ID","Description","Date","Focus Group"};
 		
 		JTable table = new JTable();
-        DefaultTableModel model = new DefaultTableModel(getData(),columnNames){
+        DefaultTableModel model = new DefaultTableModel(session.getSessionList(),columnNames){
         	@Override
            	 public boolean isCellEditable(int row, int column){  
            		    return false;  
@@ -110,33 +116,9 @@ public class Sessions {
         scroll.setPreferredSize(new Dimension(700,250));
 		element1.add(scroll);
 		contentPane.add(element1, BorderLayout.CENTER);
-		getData();
 		table.setBackground(Color.white);
 	}
-	
-	public String[][] getData(){
-		examples = readExampleDirectory("settings/examples");
-		String[][] data = new String[examples.length][4];
-		for(int i = 0; i< examples.length; i++){
-			data[i][0]=examples[i];
-		}
-		return data;
-	}
-	
-	static String[] readExampleDirectory(String dir)
-	{
-		String[] s=new File(dir).list();
-		ArrayList<String> real=new ArrayList<String>();
-		for (int i=0; i<s.length; i++)
-			if (!s[i].startsWith(".")){
-
-				if (s[i].endsWith("time")){real.add(s[i].substring(0, s[i].length()-5) + "~");}
-				if (s[i].endsWith("start")){real.add(s[i].substring(0, s[i].length()-6) + "`");}
-				}
-				
-		return (String[])real.toArray(new String[0]);
-	}
-	
+		
 	class viewButtonListener implements ActionListener{
 		String file;
 		
@@ -144,10 +126,8 @@ public class Sessions {
 		public void actionPerformed(ActionEvent e) {
 			if(row >= 0){
 				final TimeflowApp t=new TimeflowApp();
-				int length = examples[row].length();
-				if (examples[row].endsWith("~")){file = "settings/examples/"+examples[row].substring(0, length -1) + ".time";}
-				if (examples[row].endsWith("`")){file = "settings/examples/"+examples[row].substring(0, length -1) + ".start";}
-				timeflow.app.TimeflowAppLauncher.launch(file);
+			    session.setSessionID(sessionID);
+				timeflow.app.TimeflowAppLauncher.launch("settings/examples/8. Leveson Inquiry1.start");
 			}	
 		}
 	}
@@ -179,6 +159,7 @@ public class Sessions {
 			if(e.getClickCount() == 1){
 				final JTable target = (JTable)e.getSource();
 		        row = target.getSelectedRow();
+		        sessionID = Integer.parseInt((String) target.getValueAt(row, 0));
 			}
 		}
 		

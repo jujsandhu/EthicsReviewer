@@ -15,8 +15,7 @@ import java.util.*;
 import javax.swing.*;
 
 import ethicsreviewer.views.MediaViews;
-
-
+import ethicsreviewer.controller.CurrentSession;
 
 public abstract class AbstractVisualizationView extends JPanel
 {
@@ -105,6 +104,12 @@ public abstract class AbstractVisualizationView extends JPanel
 	        	{
 		        	VisualAct v=(VisualAct)o.thing;
 		        	selectedAct=v.getAct();
+					/****************************/  //iterate through 'fields' to get any other value of the event.
+		        	ActDB db=selectedAct.getDB();
+					java.util.List<Field> fields=db.getFields();
+					int eventID = (int) Double.parseDouble((selectedAct.get(fields.get(0)).toString()));
+					CurrentSession.setEventID(eventID);		
+					/******************************/
 		        	String name=v.getLabel();
 		        	
 		        	// "name" is the name of the label clicked on as a string

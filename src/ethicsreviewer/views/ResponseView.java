@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,9 +19,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class ResponseView {
+import ethicsreviewer.controller.Response;
 
+public class ResponseView {
+	
+	HashMap<Integer, String> responseList;
+    JTextArea responseArea;
+    JTextArea responseArea2;
+    JTextArea responseArea3;
 	public ResponseView(){
+		responseList = new HashMap<Integer,String>();
 		
 	}
 	
@@ -128,7 +137,7 @@ public class ResponseView {
         responseLabel.setText("Please Enter Your Response Here:");
         answer1Panel.add(responseLabel, BorderLayout.NORTH);
         
-        JTextArea responseArea = new JTextArea(5,10);
+        responseArea = new JTextArea(5,10);
         JScrollPane scrollpane = new JScrollPane(responseArea);
         answer1Panel.add(scrollpane, BorderLayout.SOUTH);
         
@@ -156,12 +165,10 @@ public class ResponseView {
         responseLabel2.setText("Please Enter Your Response Here:");
         answer2Panel.add(responseLabel2, BorderLayout.NORTH);
         
-        JTextArea responseArea2 = new JTextArea(5,10);
+        responseArea2 = new JTextArea(5,10);
         JScrollPane scrollpane2 = new JScrollPane(responseArea2);
         answer2Panel.add(scrollpane2, BorderLayout.SOUTH);
-        
-
-        
+           
         
         JPanel question3Panel = new JPanel();
         question3Panel.setLayout(new BorderLayout());
@@ -185,7 +192,7 @@ public class ResponseView {
         responseLabel3.setText("Please Enter Your Response Here:");
         answer3Panel.add(responseLabel3, BorderLayout.NORTH);
         
-        JTextArea responseArea3 = new JTextArea(5,10);
+        responseArea3 = new JTextArea(5,10);
         JScrollPane scrollpane3 = new JScrollPane(responseArea3);
         answer3Panel.add(scrollpane3, BorderLayout.SOUTH);
         
@@ -205,9 +212,14 @@ public class ResponseView {
 	}
 	
 	class NextButtonListener implements ActionListener{
-
+        //iterate in the future if JTextArea is dynamic
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			responseList.put(1, responseArea.getText());
+			responseList.put(2, responseArea2.getText());
+			responseList.put(3, responseArea3.getText());
+			
+			Response.uploadResponses(responseList);
 			new GraphView().Open();
 		}
 		
