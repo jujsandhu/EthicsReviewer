@@ -2,7 +2,10 @@ package ethicsreviewer.controller;
 
 import java.sql.*;
 import ethicsreviewer.utils.ConnectDatabase;
-import com.microsoft.sqlserver.jdbc.*;
+//import com.microsoft.sqlserver.jdbc.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Login {
 
