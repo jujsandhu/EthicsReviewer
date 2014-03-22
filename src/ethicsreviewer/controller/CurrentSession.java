@@ -9,7 +9,12 @@ public class CurrentSession {
 
 	private static int sessionID;
 	private static int eventID;
+	public static String user;
 	private String session[][];
+	
+	public static void setUser(String u){
+		user = u;
+	}
 
 	public static void setSessionID(int id) {
 		sessionID = id;
@@ -18,7 +23,11 @@ public class CurrentSession {
 	public static void setEventID(int id) {
 		eventID = id;
 	}
-
+	
+	public static String getUser(){
+		return user;
+	}
+	
 	public static int getSessionID() {
 		return sessionID;
 	}
@@ -30,13 +39,14 @@ public class CurrentSession {
 	public String[][] getSessionList() {
 		int sessionQuantity = 0;
 		ConnectDatabase connection = new ConnectDatabase();
-		ResultSet rs = connection.getResults("SELECT COUNT(*) FROM responses");
-
-		try {
+		ResultSet rs = connection.getResults("SELECT COUNT(*) FROM sessions");
+        
+		
+		try {	
 			rs.next();
-			sessionQuantity = 5;
-			session = new String[sessionQuantity][4];
+			sessionQuantity = rs.getInt(1);
 			connection.closeConnection();
+			session = new String[sessionQuantity][4];
 			rs = connection.getResults("SELECT * FROM sessions");
 
 			while (rs.next()) {

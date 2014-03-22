@@ -16,6 +16,8 @@ import java.util.*;
 
 import javax.swing.*;
 
+import ethicsreviewer.controller.CurrentSession;
+import ethicsreviewer.controller.Session;
 import ethicsreviewer.views.Sessions.createButtonListener;
 
 public class AddSessionFormView extends JDialog{
@@ -24,13 +26,14 @@ public class AddSessionFormView extends JDialog{
 	 * Doesnt do anything yet
 	 */
 	private static final long serialVersionUID = 1L;
-
+	final JTextField[] textField;
+	
 	public AddSessionFormView() {
 			super();
 		
-			final String[] labels = {"Session Name: ", "Passphrase: "};
+			final String[] labels = {"Session Name: ", "Passphrase: ", "Focus Group: "};
 		    int labelsLength = labels.length;
-		    final JTextField[] textField = new JTextField[labels.length];
+		    textField = new JTextField[labels.length];
 		    //Create and populate the panel.
 		    JPanel p = new JPanel(new SpringLayout());
 		    for (int i = 0; i < labelsLength; i++) {
@@ -70,13 +73,11 @@ public class AddSessionFormView extends JDialog{
 
 		        public void actionPerformed(ActionEvent e)
 		        {
-		            for (int i = 0 ; i < labels.length ; i++)
-		            {
-		            	
-		    			
-		            	System.out.println(labels[i]+"->"+textField[i].getText());
-		            	frame.dispose();
-		            }
+		        	Session.addSession(textField[0].getText(), textField[1].getText(), textField[2].getText());
+		        	frame.dispose();
+		        	CurrentSession.setSessionID(Session.getSessionID(textField[0].getText()));
+		        	CurrentSession.setUser("Lecturer");
+		        	timeflow.app.TimeflowAppLauncher.launch("settings/examples/8. Leveson Inquiry1.start");
 		        }
 		    });  
 		    

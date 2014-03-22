@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import ethicsreviewer.controller.CurrentSession;
 import ethicsreviewer.controller.Login;
 
 import java.awt.*;
@@ -56,8 +57,8 @@ public class StudentLogin extends JDialog implements ActionListener{
                 loginButton.setEnabled(true);
                 answer = true;
                 dispose();
-                Sessions startSession = new Sessions();
-                startSession.openScreen(); 
+                CurrentSession.setUser("Student");
+                timeflow.app.TimeflowAppLauncher.launch("settings/examples/8. Leveson Inquiry1.start");
              }
             
         }

@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -29,6 +30,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingWorker;
 import javax.swing.TransferHandler;
 
 import ethicsreviewer.controller.Response;
@@ -42,12 +44,14 @@ public class GraphView {
 	private JPanel responsesContainer;
 	private JLabel responseTitle, graphTitle, groupText, groupLabel, barText, barLabel, pieText, pieLabel;
 	private JLabel groupAText, groupBText, groupCText, instructionText;
-	//private JLabel response1, response2, response3, response4, response5, response6, response7, response8, response9;
 	private JButton groupADrop, groupBDrop, groupCDrop, draw;
-	
-	JLabel[] responsePanels;
-	
+	private MouseListener listener;
+	ArrayList<String> responseList;
+	ArrayList<JLabel> responsePanels;
+	private ResponseThread worker;
 	private static JComponent component;
+	
+	private int questionNum;
 	
 	public void Open(){
 		
@@ -99,52 +103,19 @@ public class GraphView {
         
         responsePanel.add(instructionText, BorderLayout.NORTH);
         
-        //will be changed, lecturer will select which question number to show
-        ArrayList<String> responseList = Response.getResponseByQuestionNum(1);
- 
-        responsePanels = new JLabel[responseList.size()];
+        /*******NEW THREAD TO CARRY OUT MESSENGING*********/
         
+        //which question number to retrieve
+        questionNum = 1;
+        
+        responseList = Response.getResponseByQuestionNum(questionNum);
+		responsePanels = new ArrayList<JLabel>();
         for(int i = 0; i<responseList.size();i++ ){
-        	responsePanels[i] = addResponse("<html>" +responseList.get(i)+ "<html>");
-        	responses.add(responsePanels[i]);
+        	responsePanels.add(addResponse("<html>" +responseList.get(i)+ "<html>"));
+        	responses.add(responsePanels.get(responsePanels.size()-1));
         }
-        
-//        response1 = addResponse("<html>I think that he should have taken some<br>more time to" +
-//        		" put questions to the inquiry council.</html>");
-//        responses.add(response1);
-//        
-//        response2 = addResponse("<html>I think that he should have taken some<br>more time to" +
-//        		" put questions to the inquiry council.</html>");
-//        responses.add(response2);
-//        
-//        response3 = addResponse("<html>I think that he should have taken some<br>more time to" +
-//        		" put questions to the inquiry council.</html>");
-//        responses.add(response3);
-//        
-//        response4 = addResponse("<html>I think that he should have taken some<br>more time to" +
-//        		" put questions to the inquiry council.</html>");
-//        responses.add(response4);
-//        
-//        response5 = addResponse("<html>I think that he should have taken some<br>more time to" +
-//        		" put questions to the inquiry council.</html>");
-//        responses.add(response5);
-//        
-//        response6 = addResponse("<html>I think that he should have taken some<br>more time to" +
-//        		" put questions to the inquiry council.</html>");
-//        responses.add(response6);
-//        
-//        response7 = addResponse("<html>I think that he should have taken some<br>more time to" +
-//        		" put questions to the inquiry council.</html>");
-//        responses.add(response7);
-//        
-//        response8 = addResponse("<html>I think that he should have taken some<br>more time to" +
-//        		" put questions to the inquiry council.</html>");
-//        responses.add(response8);
-//        
-//        response9 = addResponse("<html>I think that he should have taken some<br>more time to" +
-//        		" put questions to the inquiry council.</html>");
-//        responses.add(response9);
-        
+        worker = new ResponseThread();
+        worker.execute();
         
       //title panel
         titleContainer = new JPanel(null);
@@ -174,6 +145,17 @@ public class GraphView {
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
         
+	}
+	
+	private JLabel addResponse(String responseText)
+	{
+		JLabel responseLabel = new JLabel(responseText);
+		responseLabel.setFont(new Font("Calibri", Font.ITALIC, 25));
+		responseLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		responseLabel.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
+		responseLabel.setPreferredSize(new Dimension(520, 100));
+		
+		return responseLabel;
 	}
 	
 	public void setUpGraphPanel(JPanel contentPane){
@@ -389,37 +371,18 @@ public class GraphView {
         drawButtonContainer.add(draw);
         
         
-        MouseListener listener = new DragMouseAdapter();
-        for(int i = 0; i<responsePanels.length;i++){
-        	responsePanels[i].addMouseListener(listener);
+        listener = new DragMouseAdapter();
+        for(int i = 0; i<responsePanels.size();i++){
+        	responsePanels.get(i).addMouseListener(listener);
         }
-//        response1.addMouseListener(listener);
-//        response2.addMouseListener(listener);
-//        response3.addMouseListener(listener);
-//        response4.addMouseListener(listener);
-//        response5.addMouseListener(listener);
-//        response6.addMouseListener(listener);
-//        response7.addMouseListener(listener);
-//        response8.addMouseListener(listener);
-//        response9.addMouseListener(listener);
         
         groupADrop.addMouseListener(listener);
         groupBDrop.addMouseListener(listener);
         groupCDrop.addMouseListener(listener);
         
-        for(int i = 0; i<responsePanels.length;i++){
-        	responsePanels[i].setTransferHandler(new TransferHandler("text"));
+        for(int i = 0; i<responsePanels.size();i++){
+        	responsePanels.get(i).setTransferHandler(new TransferHandler("text"));
         }
-        
-//        response1.setTransferHandler(new TransferHandler("text"));
-//        response2.setTransferHandler(new TransferHandler("text"));
-//        response3.setTransferHandler(new TransferHandler("text"));
-//        response4.setTransferHandler(new TransferHandler("text"));
-//        response5.setTransferHandler(new TransferHandler("text"));
-//        response6.setTransferHandler(new TransferHandler("text"));
-//        response7.setTransferHandler(new TransferHandler("text"));
-//        response8.setTransferHandler(new TransferHandler("text"));
-//        response9.setTransferHandler(new TransferHandler("text"));
         
         
         groupADrop.setTransferHandler(new TransferHandler("text"));
@@ -428,16 +391,6 @@ public class GraphView {
 		
 	}
 	
-	private JLabel addResponse(String responseText)
-	{
-		JLabel responseLabel = new JLabel(responseText);
-		responseLabel.setFont(new Font("Calibri", Font.ITALIC, 25));
-		responseLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		responseLabel.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
-		responseLabel.setPreferredSize(new Dimension(520, 100));
-		
-		return responseLabel;
-	}
 	
 	class DragMouseAdapter extends MouseAdapter {
 		
@@ -453,7 +406,7 @@ public class GraphView {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
+			worker.cancel(true);
 			PieChart demo = new PieChart("Comparison", "Was the judge's verdict correct?");
 	        demo.pack();
 	        demo.setVisible(true);
@@ -491,6 +444,7 @@ public class GraphView {
 		}
 		
 		return text;
+		
    }
     
 	class PieChartListener implements MouseListener{
@@ -528,4 +482,39 @@ public class GraphView {
 		}
 		
 	}
+
+      class ResponseThread extends SwingWorker<Void,String>{
+		@Override
+		protected void process(List<String> chunks) {
+            responsePanels.add(addResponse("<html>" +chunks.get(chunks.size()-1)+ "<html>"));
+            JLabel latestResponse = responsePanels.get(responsePanels.size()-1); 
+          	responses.add(latestResponse);
+          	latestResponse.addMouseListener(listener);
+          	latestResponse.setTransferHandler(new TransferHandler("text"));
+          	responses.repaint();
+          	responses.revalidate();
+		}
+
+		@Override
+		protected Void doInBackground() throws Exception {
+			while(!isCancelled())
+			{
+				int size = responseList.size();
+				responseList = Response.getResponseByQuestionNum(questionNum);
+				int newSize = responseList.size();				
+				
+					for(int i = size; i <= newSize-1 ; i++){
+						publish(responseList.get(i));
+					}	
+
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+				}	
+
+			}
+			return null;	
+		}
+	  };
+  
 }

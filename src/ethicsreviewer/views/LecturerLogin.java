@@ -3,6 +3,7 @@ package ethicsreviewer.views;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import ethicsreviewer.controller.CurrentSession;
 import ethicsreviewer.controller.Login;
 
 import java.awt.*;
@@ -97,7 +98,7 @@ public class LecturerLogin extends JPanel  {
              if(logButt.getText().equals(LOG_IN)) {
                  // seek login approval from derived class
                  if(login.verifyPassword(nameField.getText(), new String(pswdField.getPassword()))) {
-                	 
+                	 CurrentSession.setUser("Lecturer");
                      startSession.openScreen();
 
                  }

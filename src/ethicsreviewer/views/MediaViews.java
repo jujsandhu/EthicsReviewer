@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ethicsreviewer.controller.CurrentSession;
+
 public class MediaViews {
 	
 	// loads different media windows depending on the label clicked on
@@ -120,7 +122,11 @@ public class MediaViews {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			new ResponseView().openScreen();
+			String user = CurrentSession.getUser();
+			if (user.equals("Student"))
+			   new ResponseView().openScreen();
+			else 
+				new GraphView().Open();
 			
 		}
     	

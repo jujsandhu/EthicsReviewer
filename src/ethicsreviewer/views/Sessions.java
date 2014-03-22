@@ -126,7 +126,8 @@ public class Sessions {
 		public void actionPerformed(ActionEvent e) {
 			if(row >= 0){
 				final TimeflowApp t=new TimeflowApp();
-			    session.setSessionID(sessionID);
+			    CurrentSession.setSessionID(sessionID);
+			    CurrentSession.setUser("Lecturer");
 				timeflow.app.TimeflowAppLauncher.launch("settings/examples/8. Leveson Inquiry1.start");
 			}	
 		}
