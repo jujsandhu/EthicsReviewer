@@ -53,7 +53,7 @@ public class MediaViews {
 	    JWebBrowser webBrowser = new JWebBrowser();
 	    webBrowserPanel.add(webBrowser, BorderLayout.CENTER);
 	    webBrowser.setBarsVisible(false);
-	    webBrowser.navigate("https://www.youtube.com/v/8UZ2n_vMOzw?fs=1");
+	    webBrowser.navigate("https://www.youtube.com/v/AzMuVx44t54?fs=1");
 	    return webBrowserPanel;
 	}
 
