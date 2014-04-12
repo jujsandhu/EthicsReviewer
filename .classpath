@@ -12,5 +12,9 @@
 	<classpathentry kind="lib" path="lib/jmf.jar"/>
 	<classpathentry kind="lib" path="lib/mediaplayer.jar"/>
 	<classpathentry kind="lib" path="lib/multiplayer.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SHNOTE/Desktop/DJNativeSwing-SWT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SHNOTE/Desktop/DJNativeSwing-SWTDemo.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SHNOTE/Desktop/DJNativeSwing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SHNOTE/Documents/GitHub/EthicsReviewer/lib/mysql-connector-java-5.1.29-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

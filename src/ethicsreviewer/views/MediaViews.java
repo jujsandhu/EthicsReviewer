@@ -2,6 +2,7 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,7 +14,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
+import chrriis.dj.nativeswing.swtimpl.NativeInterface;
+import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import ethicsreviewer.controller.CurrentSession;
 
 public class MediaViews {
@@ -23,8 +28,18 @@ public class MediaViews {
 	{
 		if(labelName.equals("New evidence from Daily Telegraph"))
 		{
-			displayMediaWindow1();
-		}
+	        NativeInterface.open();
+	        SwingUtilities.invokeLater(new Runnable() {
+	        	 public void run() {
+	        		 displayMediaWindow1();
+	        		 
+	        		 
+	             }
+	         });
+	        }
+			
+			
+		
 		
 		if(labelName.equals("Leveson stops speaking"))
 		{
@@ -33,7 +48,16 @@ public class MediaViews {
 		
 	}
     
-    private void displayMediaWindow1()
+	public static JPanel getBrowserPanel() {
+	    JPanel webBrowserPanel = new JPanel(new BorderLayout());
+	    JWebBrowser webBrowser = new JWebBrowser();
+	    webBrowserPanel.add(webBrowser, BorderLayout.CENTER);
+	    webBrowser.setBarsVisible(false);
+	    webBrowser.navigate("https://www.youtube.com/v/8UZ2n_vMOzw?fs=1");
+	    return webBrowserPanel;
+	}
+
+	private void displayMediaWindow1()
     {
     	// Create window, give it a title
         JFrame frame = new JFrame("Introduction");
@@ -63,14 +87,10 @@ public class MediaViews {
         titleBar.add(mediaTitle, BorderLayout.CENTER);
         
         contentPane.add(titleBar, BorderLayout.NORTH);
-        
-        
-        ImageIcon image = new ImageIcon("images/LevesonInquiry.png");
-        JLabel label = new JLabel("", image, JLabel.CENTER);
-        JPanel panel = new JPanel(new BorderLayout());
+                
+        JPanel panel = getBrowserPanel();
         panel.setBackground(new Color(255,255,255));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-        panel.add(label, BorderLayout.CENTER);
         
         contentPane.add(panel, BorderLayout.CENTER);
         
