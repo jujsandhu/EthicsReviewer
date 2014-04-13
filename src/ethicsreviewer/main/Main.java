@@ -15,9 +15,8 @@ public class Main {
             @Override
             public void run()
             {
-               // new InitialView().setVisible(true);
-            	new GraphViewStudents().Open();
-            	//new lecturerLogin().setVisible(true);
+                new InitialView().setVisible(true);
+            	
             }
 
         });
