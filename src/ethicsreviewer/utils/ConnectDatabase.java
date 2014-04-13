@@ -1,5 +1,4 @@
 package ethicsreviewer.utils;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -11,14 +10,17 @@ public class ConnectDatabase {
 	Connection con = null;
     Statement stmt = null;
     ResultSet rs = null;
-    String connectionUrl = "jdbc:mysql://eu-cdbr-azure-west-b.cloudapp.net/ethicsreviewerdb"; 
-    String username = "babe69480a9c2e";
-    String pword = "4117c86a";
-
+//    String connectionUrl = "jdbc:mysql://eu-cdbr-azure-west-b.cloudapp.net/ethicsreviewerdb"; 
+//    String username = "babe69480a9c2e";
+//    String pword = "4117c86a";
+    
+    String connectionUrl = "jdbc:sqlserver://hlp7g46bh1.database.windows.net:1433;databaseName=jujsandhu_db"; 
+    String username = "ee@hlp7g46bh1";
+    String pword = "hello10??";
 	public ResultSet getResults(String SQL){
          try {
-
-        	Class.forName("com.mysql.jdbc.Driver");
+        	//Class.forName("com.mysql.jdbc.Driver");
+        	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
             con = DriverManager.getConnection(connectionUrl,username,pword);
             
             stmt = con.createStatement();
@@ -34,8 +36,8 @@ public class ConnectDatabase {
 	
 	public void insertToDatabase(String SQL){
 		try {
-
-        	Class.forName("com.mysql.jdbc.Driver");
+        	//Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
             con = DriverManager.getConnection(connectionUrl,username,pword);
             
             stmt = con.createStatement();
