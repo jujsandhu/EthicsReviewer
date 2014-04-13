@@ -1,48 +1,29 @@
-Question:
-MR JAY: Mr Wright, the Lawrence issue. First of all,
-4 paragraph 14 of your statement, please, where a senior
-5 figure within the Superintendents Association made
-6 a speech dealing with the repeal of the double jeopardy
-7 rule, and you had some influence over him in making that
-8 speech?
-
-Answer:
-9  The influence was small, possibly. There was influence,
-10 I think, that prior to the -- prior to the police
-11 Superintendents Association annual conference in
-12 September 1997, I had a private meeting with the
-13 president, and he gave details of what he was proposing
-14 to put in his speech and the same thing he would have
-15 said to other reporters as well, and it's just open, but
-16 he mentioned that he was interested in the issue of the
-17 double jeopardy laws and was going to raise a case in
-18 the north-east in relation to his speech.
-19 And I said, "Well, actually I'm very interested in
-20 this as well in relation to the Stephen Lawrence case,
-21 and if there could be a change in the law and if there's
-22 suitable evidence came forward, then there might be an
-23 opportunity for a retrial." As a result of that, he
-24 inserted that in his speech and made a powerful
-25 reference to it and used it in a slide show as well. 
-1 I just wanted to emphasise once again the positive
-2 aspects of being a crime reporter.
-
-Question:
-3 And then paragraph 18 of your statement, if I may, which
-4 gives us the background to the famous "Murderers" front
-5 page in 1997. You were advising Mr Dacre about that and
-6 obviously it was going to be his decision as to whether
-7 to publish it in that way.
-
-Answer:
-8 Yes, it was. In the days and weeks leading up to that
-9 front page, and I had no idea that the editor was
-10 planning to do that until the eve of publication, but
-11 I was making my own enquiries about the case, and it was
-12 through what you would describe here as unofficial
-13 sources, about the background to the case, the
-14 background to the killers. There was an inquest going
-15 on and it was a case we were very interested in and on
-16 the eve of publication the editor sought my advice on my
-17 knowledge on the background of these five. And it in a
-18 small way perhaps helped him make his mind up.
+Q. What does "off the record" mean in this sort of context, Mr Brett?
+A. A duty of confidentiality. The journalist would say, "Can I talk to you in confidence, Alastair?"
+Q. What would be, though, the limits of that duty? Presumably duties owed to the court would be higher duties, would they not?
+A. Yes, that would be right.
+Lord JUSTICE LEVESON: Neither is quite the same as a privileged situation, is it?
+A. A privileged situation would obviously be where you're giving advice of some kind or other but that presupposes --
+Lord JUSTICE LEVESON: He's just about to ask you for some.
+A. Yes, he is.
+Lord JUSTICE LEVESON: So would you consider that privileged?
+A. I probably would regard it as privileged, yes.  Privileged and confidential. 
+ MR JAY: So it attracts, in your view, legal advice privilege, have I correctly understood it?
+A. Yes.
+Lord JUSTICE LEVESON: But he's not your client.
+A. No, my employer is my client. This is the dilemma you're faced with. You have a journalist coming to you and saying, "Can I talk to you Alastair, I need some advice, can I talk to you confidentially?" and I would say, "Yes, of course you can". That leads you into the difficult dilemma that you obviously have personal relationships with the journalists on the newsroom floor, but you equally have a duty to your employer, the company, the newspaper. And the two don't necessarily go in the same direction.
+Lord JUSTICE LEVESON: I understand that, but why would there be legal advice privilege? If somebody comes to me for advice now, not when I was in practice, besides telling them it's not worth a great deal, I don't suppose that the discussion would engage privilege at all, would it?
+A. In your current situation, no. But even before.
+Lord JUSTICE LEVESON: Or even before, yes.
+A. If I'm approached by somebody for legal advice, and I was, I think I would regard that as covered by legal professional privilege.
+Lord JUSTICE LEVESON: I'll have to think about that.
+A. It raises all sorts of interesting questions about in-house lawyers.
+LORD JUSTICE LEVESON: Indeed. 
+MR JAY: But maybe you're using the term "off the record", if I may say so, without legal precision. Clearly you would be advising your employer, that entity would be your client, and legal advice or legal professional privilege would attach, but if you're advising an employee of your employer, and that employee may be in breach of duty to his employer, then there's -- I won't say a difficult situation --
+A. That's precisely the word I was going to use: a difficult situation.
+Q. Maybe the correct analysis is that there isn't legal advice privilege in relation to those relations. What happens if the employer asks you to give them the gist of the conversation you've just had with Mr Foster?
+A. That's precisely when I have a ghastly, horrible, difficult situation in front of me. 
+MR JAY: Mr Brett, you say in the third sentence of paragraph of your statement you told Mr Foster you'd have to give careful consideration to whether or not you would report the matter to David Chappell, who is the managing editor of the paper. That might suggest that even though the conversation with Mr Foster was off the record, that wasn't going to carry very much weight if there was a need to report the matter to someone else; have I understood it correctly?
+A. I think that's correct, yes.
+Q. And your thinking then was regardless of whether or not a criminal offence had been committed, because there were serious ethical issues here, that would warrant or might warrant consideration by those responsible for the disciplinary processes of the newspaper?
+A. Yes, correct.

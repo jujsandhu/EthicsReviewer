@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import ethicsreviewer.controller.CurrentSession;
 import ethicsreviewer.controller.Response;
 
 public class ResponseView {
@@ -50,7 +51,7 @@ public class ResponseView {
         transcriptPanel.setPreferredSize(new Dimension(550,400));
         contentPane.add(transcriptPanel, BorderLayout.WEST);
         
-        JTextArea transcript = new JTextArea(15,38);
+        JTextArea transcript = new JTextArea(15,60);
         transcript.setText(readTranscript("New evidence from Daily Telegraph.txt"));
         transcript.setLineWrap(true);
         transcript.setEditable(false);
@@ -64,7 +65,7 @@ public class ResponseView {
         rulesTitle.setBorder(BorderFactory.createEmptyBorder(5,150,5,150));
         transcriptPanel.add(rulesTitle, BorderLayout.CENTER);
         
-        JTextArea rules = new JTextArea(15,38);
+        JTextArea rules = new JTextArea(15,60);
         rules.setText(readRules("New evidence from Daily Telegraph rules.txt"));
         rules.setLineWrap(true);
         rules.setEditable(false);
@@ -220,7 +221,11 @@ public class ResponseView {
 			responseList.put(3, responseArea3.getText());
 			
 			Response.uploadResponses(responseList);
-			new GraphView().Open();
+			if (CurrentSession.getUser() == "Student"){
+				new GraphViewStudents().Open();
+			}
+			else{
+			new GraphView().Open();}
 		}
 		
 	}

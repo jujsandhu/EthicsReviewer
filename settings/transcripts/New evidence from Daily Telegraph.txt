@@ -1,53 +1,29 @@
-1 Thursday, 15 March 2012
-2 (10.08 am)
-3 Discussion
-4 LORD JUSTICE LEVESON: Yes, Mr Garnham?
-5 MR GARNHAM: Sir, I apologise to you and the other core
-6 participants that the statement of Mr Driscoll was
-7 circulated very late yesterday evening.
-8 It was, however, the result of a great deal of hard
-9 work by those who instruct me and Ms Allen of Bindmans
-10 who prepared this statement with Mr Driscoll during the
-11 course of yesterday afternoon and yesterday evening.
-12 LORD JUSTICE LEVESON: Yes, I understand. Thank you.
-13 Mr Caplan, yes, if you want to say this is timing
-14 that verges on the unacceptable, you don't need to say
-15 it; I agree.
-16 MR CAPLAN: Thank you.
-17 LORD JUSTICE LEVESON: The real question is what you want to
-18 do about it.
-19 MR CAPLAN: Sir, I was going to say that.
-20 LORD JUSTICE LEVESON: There you are.
-21 MR CAPLAN: Thank you for saying it first. The position as
-22 you know obviously is I'm back again today because the
-23 crime correspondent of the Daily Mail, Mr Wright, is
-24 here and some of what Mr Driscoll says touches very much
-25 on Mr Wright's reporting of the Stephen Lawrence matter.
-
-(Page 2)
-
-1 He's been reporting about it for the last 15 years.
-2 I will say this: the Daily Mail and his reporting has
-3 been the subject of a lot of positive comment and
-4 awards, and he will deal with it, but it comes very
-5 late, he does not want to come back, he'd rather deal
-6 with his evidence today. It's extremely unfortunate
-7 that it's come as late as it has.
-8 LORD JUSTICE LEVESON: Yes, Mr Caplan, to some extent I'm
-9 responding to a criticism that I got yesterday that
-10 material comes into the Inquiry after witnesses have
-11 been and they haven't dealt with it. So I understand
-12 why there was an anxiety that we should do it the right
-13 way round. If you want more time, then you shall have
-14 it and I will make sure it happens. I can understand
-15 why Mr Wright wouldn't want to come back; that was the
-16 complaint I got yesterday. I can't win, or the Inquiry
-17 can't win, whatever we do. We're trying to cope with
-18 a fast-moving Inquiry in circumstances where evidence is
-19 being generated which we don't know about, we don't know
-20 what is out there, so when it's provided, it's
-21 inevitable that it's going to cause difficulty.
-22 I intend to be very careful about this in the light
-23 of what happened yesterday. I've now reviewed with care
-24 what the particular witness who was the subject of
-25 yesterday's complaint said and I'm not entirely sure
+Q. What does "off the record" mean in this sort of context, Mr Brett?
+A. A duty of confidentiality. The journalist would say, "Can I talk to you in confidence, Alastair?"
+Q. What would be, though, the limits of that duty? Presumably duties owed to the court would be higher duties, would they not?
+A. Yes, that would be right.
+Lord JUSTICE LEVESON: Neither is quite the same as a privileged situation, is it?
+A. A privileged situation would obviously be where you're giving advice of some kind or other but that presupposes --
+Lord JUSTICE LEVESON: He's just about to ask you for some.
+A. Yes, he is.
+Lord JUSTICE LEVESON: So would you consider that privileged?
+A. I probably would regard it as privileged, yes.  Privileged and confidential. 
+ MR JAY: So it attracts, in your view, legal advice privilege, have I correctly understood it?
+A. Yes.
+Lord JUSTICE LEVESON: But he's not your client.
+A. No, my employer is my client. This is the dilemma you're faced with. You have a journalist coming to you and saying, "Can I talk to you Alastair, I need some advice, can I talk to you confidentially?" and I would say, "Yes, of course you can". That leads you into the difficult dilemma that you obviously have personal relationships with the journalists on the newsroom floor, but you equally have a duty to your employer, the company, the newspaper. And the two don't necessarily go in the same direction.
+Lord JUSTICE LEVESON: I understand that, but why would there be legal advice privilege? If somebody comes to me for advice now, not when I was in practice, besides telling them it's not worth a great deal, I don't suppose that the discussion would engage privilege at all, would it?
+A. In your current situation, no. But even before.
+Lord JUSTICE LEVESON: Or even before, yes.
+A. If I'm approached by somebody for legal advice, and I was, I think I would regard that as covered by legal professional privilege.
+Lord JUSTICE LEVESON: I'll have to think about that.
+A. It raises all sorts of interesting questions about in-house lawyers.
+LORD JUSTICE LEVESON: Indeed. 
+MR JAY: But maybe you're using the term "off the record", if I may say so, without legal precision. Clearly you would be advising your employer, that entity would be your client, and legal advice or legal professional privilege would attach, but if you're advising an employee of your employer, and that employee may be in breach of duty to his employer, then there's -- I won't say a difficult situation --
+A. That's precisely the word I was going to use: a difficult situation.
+Q. Maybe the correct analysis is that there isn't legal advice privilege in relation to those relations. What happens if the employer asks you to give them the gist of the conversation you've just had with Mr Foster?
+A. That's precisely when I have a ghastly, horrible, difficult situation in front of me. 
+MR JAY: Mr Brett, you say in the third sentence of paragraph of your statement you told Mr Foster you'd have to give careful consideration to whether or not you would report the matter to David Chappell, who is the managing editor of the paper. That might suggest that even though the conversation with Mr Foster was off the record, that wasn't going to carry very much weight if there was a need to report the matter to someone else; have I understood it correctly?
+A. I think that's correct, yes.
+Q. And your thinking then was regardless of whether or not a criminal offence had been committed, because there were serious ethical issues here, that would warrant or might warrant consideration by those responsible for the disciplinary processes of the newspaper?
+A. Yes, correct.

@@ -3,6 +3,7 @@ package ethicsreviewer.main;
 import javax.swing.SwingUtilities;
 
 import ethicsreviewer.controller.Login;
+import ethicsreviewer.views.GraphViewStudents;
 import ethicsreviewer.views.InitialView;
 
 public class Main {
@@ -14,7 +15,8 @@ public class Main {
             @Override
             public void run()
             {
-                new InitialView().setVisible(true);
+               // new InitialView().setVisible(true);
+            	new GraphViewStudents().Open();
             	//new lecturerLogin().setVisible(true);
             }
 
