@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +36,12 @@ import javax.swing.TransferHandler;
 
 import org.jfree.ui.RefineryUtilities;
 
+import ethicsreviewer.controller.CurrentSession;
 import ethicsreviewer.controller.Response;
 import ethicsreviewer.graphs.BarChart;
+import ethicsreviewer.graphs.BarChartStudent;
 import ethicsreviewer.graphs.PieChart;
+import ethicsreviewer.graphs.PieChartStudent;
 import ethicsreviewer.views.GraphView.DragMouseAdapter;
 import ethicsreviewer.views.GraphView.NextQuestionButtonListener;
 import ethicsreviewer.views.GraphView.PieChartListener;
@@ -283,7 +287,23 @@ public class GraphViewStudents {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			PieChart demo = new PieChart("Pie Chart for Question " + questionNum, "Pie Chart for " + GraphView.getQuestionString(questionNum), questionNum);
+			
+			System.out.println("In session" + CurrentSession.getSessionID());
+			
+			int[] catcount = new int[3];
+			try {
+				catcount[0] = Integer.parseInt(Response.downloadGraphData(questionNum,0).get(0));
+				catcount[1] = Integer.parseInt(Response.downloadGraphData(questionNum,1).get(0));
+				catcount[2] = Integer.parseInt(Response.downloadGraphData(questionNum,2).get(0));
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+			PieChartStudent demo = new PieChartStudent("Pie Chart for Question " + questionNum, "Pie Chart for " + GraphView.getQuestionString(questionNum), questionNum, catcount);
 	        demo.pack();
 	        demo.setVisible(true);
 			
@@ -295,7 +315,22 @@ public class GraphViewStudents {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			BarChart demo = new BarChart("Bar Chart for Question " + questionNum, "Bar Chart for " + GraphView.getQuestionString(questionNum),questionNum);
+			
+			int[] catcount = new int[3];
+			try {
+				catcount[0] = Integer.parseInt(Response.downloadGraphData(questionNum,0).get(0));
+				catcount[1] = Integer.parseInt(Response.downloadGraphData(questionNum,1).get(0));
+				catcount[2] = Integer.parseInt(Response.downloadGraphData(questionNum,2).get(0));
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			
+			BarChartStudent demo = new BarChartStudent("Bar Chart for Question " + questionNum, "Bar Chart for " + GraphView.getQuestionString(questionNum),questionNum,catcount);
 	        demo.pack();
 	        RefineryUtilities.centerFrameOnScreen(demo);
 	        demo.setVisible(true);

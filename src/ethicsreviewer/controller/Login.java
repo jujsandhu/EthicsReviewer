@@ -55,9 +55,10 @@ public class Login {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(sessionID);
-		connection.closeConnection();
+		System.out.println("Currently in session: " + sessionID);
 		CurrentSession.setSessionID(sessionID);
+		connection.closeConnection();
+		
 		return true;
 	}
 }

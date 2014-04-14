@@ -1,6 +1,7 @@
 package ethicsreviewer.controller;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,6 +18,31 @@ public class Response {
 		ConnectDatabase connection = new ConnectDatabase();
 		connection.insertToDatabase(SQL);
 		connection.closeConnection();
+	}
+	
+	public static void uploadGraphData(int qnum, int catnum, int catcount){
+		 int session = CurrentSession.getSessionID(); 
+		
+		String SQL = "UPDATE graph SET catcount=" + catcount +" WHERE session=" + session + " AND qnum=" +qnum + "AND catnum=" + catnum + ";";		     
+		ConnectDatabase connection = new ConnectDatabase();
+		connection.insertToDatabase(SQL);
+		connection.closeConnection();
+	}
+	
+	public static ArrayList<String> downloadGraphData(int qnum, int catnum) throws SQLException{
+		 int session = CurrentSession.getSessionID(); 
+		 ArrayList<String> catcountList = new ArrayList<String>();
+		String SQL = "SELECT catcount FROM graph WHERE session=" + session + " AND qnum=" +qnum + "AND catnum=" + catnum + ";";		     
+		ConnectDatabase connection = new ConnectDatabase();
+		ResultSet rs = connection.getResults(SQL);
+		try {
+			while (rs.next()) {
+               catcountList.add(rs.getString(1));
+			}
+		} catch (Exception e) {}
+		connection.closeConnection();
+		return catcountList;
+		
 	}
 	
 	public static ArrayList<String> getResponseByQuestionNum(int num){

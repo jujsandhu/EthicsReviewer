@@ -35,9 +35,11 @@ import javax.swing.TransferHandler;
 
 import org.jfree.ui.RefineryUtilities;
 
+import ethicsreviewer.controller.CurrentSession;
 import ethicsreviewer.controller.Response;
 import ethicsreviewer.graphs.BarChart;
 import ethicsreviewer.graphs.PieChart;
+import ethicsreviewer.utils.ConnectDatabase;
 
 public class GraphView {
 
@@ -416,6 +418,8 @@ public class GraphView {
 		drawAnother.setPreferredSize(new Dimension(150,40));
 		drawAnother.addActionListener(new drawAnotherListener());
 		
+		
+		
 		   JPanel subPanel1 = new JPanel();
 		    subPanel1.add(prevq); 
 		    subPanel1.add(draw);
@@ -474,6 +478,13 @@ public class GraphView {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			
+			int qnum = getQnum();
+			Response.uploadGraphData(qnum, 0, categoryCount[0 + 3*(qnum-1)]/2);
+			Response.uploadGraphData(qnum, 1, categoryCount[1 + 3*(qnum-1)]/2);
+			Response.uploadGraphData(qnum, 2, categoryCount[2 + 3*(qnum-1)]/2);
+			
+			
 			worker.cancel(true);
 			PieChart demo = new PieChart("Pie Chart for Question " + questionNum, "Pie Chart for " + getQuestionString(questionNum), getQnum());
 	        demo.pack();
@@ -488,8 +499,15 @@ public class GraphView {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			
+			int qnum = getQnum();
+			Response.uploadGraphData(qnum, 0, categoryCount[0 + 3*(qnum-1)]/2);
+			Response.uploadGraphData(qnum, 1, categoryCount[1 + 3*(qnum-1)]/2);
+			Response.uploadGraphData(qnum, 2, categoryCount[2 + 3*(qnum-1)]/2);
+			
+			
 			worker.cancel(true);
-			BarChart demo = new BarChart("Bar Chart for Question " + questionNum, "Bar Chart for " + getQuestionString(questionNum),getQnum());
+			BarChart demo = new BarChart("Bar Chart for Question " + questionNum, "Bar Chart for " + getQuestionString(questionNum),qnum);
 	        demo.pack();
 	        RefineryUtilities.centerFrameOnScreen(demo);
 	        demo.setVisible(true);
@@ -503,6 +521,12 @@ public class GraphView {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			
+			int qnum = getQnum();
+			Response.uploadGraphData(qnum, 0, categoryCount[0 + 3*(qnum-1)]/2);
+			Response.uploadGraphData(qnum, 1, categoryCount[1 + 3*(qnum-1)]/2);
+			Response.uploadGraphData(qnum, 2, categoryCount[2 + 3*(qnum-1)]/2);
+			
 			if (questionNum != 3){ 
 				frame.dispose();
 				new GraphView().Open(questionNum + 1);
