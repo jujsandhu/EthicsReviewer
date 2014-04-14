@@ -24,6 +24,7 @@ import ethicsreviewer.controller.Response;
 
 public class ResponseView {
 	
+	private JButton next = new JButton("Submit");
 	HashMap<Integer, String> responseList;
     JTextArea responseArea;
     JTextArea responseArea2;
@@ -204,8 +205,7 @@ public class ResponseView {
         buttonContainer.setPreferredSize(new Dimension(200,55));
         
         textPanel.add(buttonContainer, BorderLayout.SOUTH);
-        
-        JButton next = new JButton("Next");
+       
         next.setPreferredSize(new Dimension(80,40));
         
         next.addActionListener(new NextButtonListener());
@@ -219,13 +219,16 @@ public class ResponseView {
 			responseList.put(1, responseArea.getText());
 			responseList.put(2, responseArea2.getText());
 			responseList.put(3, responseArea3.getText());
-			
+			next.setText("Submitted");
+			next.setForeground(Color.red);
+			next.setEnabled(false);
 			Response.uploadResponses(responseList);
 			if (CurrentSession.getUser() == "Student"){
-				new GraphViewStudents().Open();
+				new GraphViewStudents().Open(1);
 			}
 			else{
-			new GraphView().Open();}
+					
+			new GraphView().Open(1);}
 		}
 		
 	}

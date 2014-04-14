@@ -33,10 +33,13 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingWorker;
 import javax.swing.TransferHandler;
 
+import org.jfree.ui.RefineryUtilities;
+
 import ethicsreviewer.controller.Response;
+import ethicsreviewer.graphs.BarChart;
 import ethicsreviewer.graphs.PieChart;
 import ethicsreviewer.views.GraphView.DragMouseAdapter;
-import ethicsreviewer.views.GraphView.NextButtonListener;
+import ethicsreviewer.views.GraphView.NextQuestionButtonListener;
 import ethicsreviewer.views.GraphView.PieChartListener;
 import ethicsreviewer.views.GraphView.ResponseThread;
 
@@ -57,8 +60,9 @@ public class GraphViewStudents {
 	
 	private int questionNum;
 	
-	public void Open(){
+	public void Open(int qnum){
 		
+		questionNum = qnum;
 		
 		// Create window, give it a title
         frame = new JFrame("Graph Screen for Students");
@@ -98,9 +102,15 @@ public class GraphViewStudents {
         
         responsePanel.add(responsesScrollPanel, BorderLayout.CENTER);
         
-        instructionText = new JLabel("<html>The interviewer states that he had<br>" +
-        		"no idea what the editor was planning on<br>publishing, " +
-        		"how true do you think this is?</html>");
+        if (questionNum == 1) {
+        	instructionText = new JLabel("<html>Question 1<br>What does Alastair Brett mean by<br>off the record?</html>");
+        }
+        if (questionNum == 2) {
+        	instructionText = new JLabel("<html>Question 2<br>Did Alastair Brett have permission to leak<br>the information to his colleagues?</html>");
+        }
+        if (questionNum == 3) {
+        	instructionText = new JLabel("<html>Question 3<br>What could be the problem that <br>Alistair Brett was so annoyed about?</html>");
+        }
         instructionText.setFont(new Font("Calibri", Font.BOLD, 25));
         instructionText.setAlignmentX(Component.CENTER_ALIGNMENT);
         instructionText.setBorder(BorderFactory.createEmptyBorder(5, 50, 5, 5));
@@ -109,9 +119,7 @@ public class GraphViewStudents {
         
         /*******NEW THREAD TO CARRY OUT MESSENGING*********/
         
-        //which question number to retrieve
-        questionNum = 1;
-        
+                
         responseList = Response.getResponseByQuestionNum(questionNum);
 		responsePanels = new ArrayList<JLabel>();
         for(int i = 0; i<responseList.size();i++ ){
@@ -143,6 +151,7 @@ public class GraphViewStudents {
         contentPane.add(titleContainer, BorderLayout.NORTH);
         
         setUpGraphPanel(contentPane);
+     
         
         frame.setContentPane(contentPane);
         frame.pack();
@@ -180,7 +189,7 @@ public class GraphViewStudents {
 		Piebutton.setFont(new Font("Calibri", Font.ITALIC, 25));
 		//Piebutton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		pieLabel = new JLabel(new ImageIcon(uploadPicture("pie")));
-		Piebutton.addActionListener(new NextButtonListener());
+		Piebutton.addActionListener(new PieButtonListener());
 		//pieLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		pieContainer.add(Piebutton, BorderLayout.NORTH);
 		pieContainer.add(pieLabel);
@@ -194,13 +203,21 @@ public class GraphViewStudents {
 		Barbutton.setFont(new Font("Calibri", Font.ITALIC, 25));
 		//Barbutton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		barLabel = new JLabel(new ImageIcon(uploadPicture("bar")));
-		Barbutton.addActionListener(new NextButtonListener());
+		Barbutton.addActionListener(new BarButtonListener());
 		//barLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		barContainer.add(Barbutton, BorderLayout.NORTH);
 		barContainer.add(barLabel);
 		graphPanel.add(barContainer, BorderLayout.CENTER);
 		
 		//overall group container
+		String nexString; 
+		if (questionNum == 3) {nexString = "Close";} else {nexString = "Next Question";}
+		String prevString; 
+		if (questionNum == 1) {prevString = "Close";} else {prevString = "Previous Question";}
+		JButton nextQbutton = new JButton(nexString);
+		JButton prevQbutton = new JButton(prevString);
+		
+		
 		groupContainer = new JPanel(null);
 		groupContainer.setBackground(new Color(255,255,255));
 		groupContainer.setLayout(new BorderLayout());
@@ -208,23 +225,79 @@ public class GraphViewStudents {
 		Groupingbutton.setFont(new Font("Calibri", Font.ITALIC, 25));
 		//Groupingbutton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		groupLabel = new JLabel(new ImageIcon(uploadPicture("group")));
-		Groupingbutton.addActionListener(new NextButtonListener());
+		//Groupingbutton.addActionListener(new ButtonListener()); ??
 		//groupLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		
+		
+		nextQbutton.setPreferredSize(new Dimension(150,40));
+		nextQbutton.addActionListener(new NextStudentQuestionListener());
+		
+		prevQbutton.setPreferredSize(new Dimension(150,40));
+		prevQbutton.addActionListener(new PrevStudentQuestionListener());
+		
+		
+		JPanel subPanel = new JPanel();
+		subPanel.add(prevQbutton);
+		subPanel.add(nextQbutton);
+		subPanel.setBackground(new Color(255,255,255));
+		groupContainer.add(subPanel, BorderLayout.SOUTH);
+			
 		groupContainer.add(Groupingbutton, BorderLayout.NORTH);
 		groupContainer.add(groupLabel);
 		graphPanel.add(groupContainer, BorderLayout.SOUTH);
 		
+	
+	
+		
 		
 	}
 	
-	
-	class NextButtonListener implements ActionListener{
+	class NextStudentQuestionListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			worker.cancel(true);
-			PieChart demo = new PieChart("Comparison", "Was the judge's verdict correct?");
+			if (questionNum != 3){ 
+				frame.dispose();
+				new GraphViewStudents().Open(questionNum + 1);
+				}
+			else{frame.dispose();}
+		}
+	
+	}
+	
+	class PrevStudentQuestionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (questionNum != 1){ 
+				frame.dispose();
+				new GraphViewStudents().Open(questionNum - 1);
+				}
+			else{frame.dispose();}
+		}
+	
+	}
+	
+	
+	class PieButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			PieChart demo = new PieChart("Pie Chart for Question " + questionNum, "Pie Chart for " + GraphView.getQuestionString(questionNum), questionNum);
 	        demo.pack();
+	        demo.setVisible(true);
+			
+		}
+		
+	}
+	
+	class BarButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			BarChart demo = new BarChart("Bar Chart for Question " + questionNum, "Bar Chart for " + GraphView.getQuestionString(questionNum),questionNum);
+	        demo.pack();
+	        RefineryUtilities.centerFrameOnScreen(demo);
 	        demo.setVisible(true);
 			
 		}

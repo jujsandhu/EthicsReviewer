@@ -146,7 +146,7 @@ public class MediaViews {
 			if (user.equals("Student"))
 			   new ResponseView().openScreen();
 			else 
-				new GraphView().Open();
+				new GraphView().Open(1);
 			
 		}
     	

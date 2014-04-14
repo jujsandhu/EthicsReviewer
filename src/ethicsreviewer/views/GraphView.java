@@ -33,7 +33,10 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingWorker;
 import javax.swing.TransferHandler;
 
+import org.jfree.ui.RefineryUtilities;
+
 import ethicsreviewer.controller.Response;
+import ethicsreviewer.graphs.BarChart;
 import ethicsreviewer.graphs.PieChart;
 
 public class GraphView {
@@ -44,20 +47,28 @@ public class GraphView {
 	private JPanel responsesContainer;
 	private JLabel responseTitle, graphTitle, groupText, groupLabel, barText, barLabel, pieText, pieLabel;
 	private JLabel groupAText, groupBText, groupCText, instructionText;
-	private JButton groupADrop, groupBDrop, groupCDrop, draw;
+	private JButton groupADrop, groupBDrop, groupCDrop, draw, nextq, drawAnother;
 	private MouseListener listener;
 	ArrayList<String> responseList;
 	ArrayList<JLabel> responsePanels;
 	private ResponseThread worker;
 	private static JComponent component;
+	private static int[] categoryCount = new int[9] ;
+	private static String[] categoryNames = new String[] {"Untrue Statement", "Inadmissable in Count", "Deniable in Court", "Yes", "No", "Under certain conditions", "Privacy converns",
+		"Public outrage", "Political Lobbying"} ;
+	private static String question1 = "Question 1: What does Alastair Brett mean by off the record?";
+	private static String question2 = "Question 2: Did  Alastair Brett have permission to leak the information to his colleagues?";
+	private static String question3 = "Question 3: What could be the problem that Alastair Brett was so annoyed about?";
+	public String chartType;
+	private static int questionNum;
 	
-	private int questionNum;
-	
-	public void Open(){
+	public void Open( int questNum){
 		
+		questionNum = questNum;
+		System.out.println(questionNum);	
 		
 		// Create window, give it a title
-        frame = new JFrame("Graph Screen");
+        frame = new JFrame("Graph Screen - Question: " + questionNum);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Make a new border layout for the content in the window
@@ -65,13 +76,13 @@ public class GraphView {
         contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         contentPane.setBackground(new Color(255,255,255));
         contentPane.setLayout(new BorderLayout());
-        contentPane.setPreferredSize(new Dimension(1000,765));
+        contentPane.setPreferredSize(new Dimension(1200,800));
         
         responsePanel = new JPanel();
         responsePanel.setLayout(new BorderLayout());
         responsePanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         responsePanel.setBackground(new Color(255,255,255));
-        
+                
         contentPane.add(responsePanel, BorderLayout.WEST);
         
         responsesContainer = new JPanel();
@@ -94,9 +105,15 @@ public class GraphView {
         
         responsePanel.add(responsesScrollPanel, BorderLayout.CENTER);
         
-        instructionText = new JLabel("<html>The interviewer states that he had<br>" +
-        		"no idea what the editor was planning on<br>publishing, " +
-        		"how true do you think this is?</html>");
+        if (questionNum == 1) {
+        	instructionText = new JLabel("<html>Question 1<br>What does Alastair Brett mean by<br>off the record?</html>");
+        }
+        if (questionNum == 2) {
+        	instructionText = new JLabel("<html>Question 2<br>Did Alastair Brett have permission to leak<br>the information to his colleagues?</html>");
+        }
+        if (questionNum == 3) {
+        	instructionText = new JLabel("<html>Question 3<br>What could be the problem that <br> Alastair Brett was so annoyed about?</html>");
+        }
         instructionText.setFont(new Font("Calibri", Font.BOLD, 25));
         instructionText.setAlignmentX(Component.CENTER_ALIGNMENT);
         instructionText.setBorder(BorderFactory.createEmptyBorder(5, 50, 5, 5));
@@ -106,7 +123,7 @@ public class GraphView {
         /*******NEW THREAD TO CARRY OUT MESSENGING*********/
         
         //which question number to retrieve
-        questionNum = 1;
+        
         
         responseList = Response.getResponseByQuestionNum(questionNum);
 		responsePanels = new ArrayList<JLabel>();
@@ -122,7 +139,7 @@ public class GraphView {
         titleContainer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         titleContainer.setLayout(new BorderLayout());
         titleContainer.setBackground(new Color(255,255,255));
-        titleContainer.setPreferredSize(new Dimension(600,50));
+        titleContainer.setPreferredSize(new Dimension(800,50));
         
         responseTitle = new JLabel("Responses");
         responseTitle.setFont(new Font("Calibri", Font.PLAIN, 40));
@@ -131,10 +148,10 @@ public class GraphView {
         titleContainer.add(responseTitle, BorderLayout.WEST);
         
         
-        graphTitle = new JLabel("Pie Chart groupings");
+        graphTitle = new JLabel("Types of Charts");
         graphTitle.setFont(new Font("Calibri", Font.PLAIN, 40));
         graphTitle.setForeground(Color.black);
-        graphTitle.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 90));
+        graphTitle.setBorder(BorderFactory.createEmptyBorder(0, 0, 0,180));
         titleContainer.add(graphTitle, BorderLayout.EAST);
         contentPane.add(titleContainer, BorderLayout.NORTH);
         
@@ -164,7 +181,7 @@ public class GraphView {
 		graphPanel.setLayout(new BorderLayout());
         graphPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         graphPanel.setBackground(new Color(255,255,255));
-        graphPanel.setPreferredSize(new Dimension(480,700));
+        graphPanel.setPreferredSize(new Dimension(600,700));
         contentPane.add(graphPanel, BorderLayout.EAST);
 		
         //overall piechart Container
@@ -190,6 +207,7 @@ public class GraphView {
 		barText.setFont(new Font("Calibri", Font.ITALIC, 25));
 		barText.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 0));
 		barLabel = new JLabel(new ImageIcon(uploadPicture("bar")));
+		barLabel.addMouseListener(new BarChartListener());
 		barContainer.add(barText, BorderLayout.WEST);
 		barContainer.add(barLabel);
 		graphPanel.add(barContainer, BorderLayout.SOUTH);
@@ -211,11 +229,13 @@ public class GraphView {
 	
 	public void setUpGroupingPanel(JPanel contentPane) {
 		
+			
+		
 		groupingPanel = new JPanel();
 		groupingPanel.setLayout(new BoxLayout(groupingPanel, BoxLayout.Y_AXIS));
 		groupingPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		groupingPanel.setBackground(new Color(255,255,255));
-		groupingPanel.setPreferredSize(new Dimension(480,700));
+		groupingPanel.setPreferredSize(new Dimension(650,700));
         contentPane.add(groupingPanel, BorderLayout.EAST);
 		
         instructionText = new JLabel("Drag the responses into the groups below");
@@ -233,10 +253,10 @@ public class GraphView {
 		
 		groupingPanel.add(groupAContainer);
 		
-		groupAText = new JLabel("Group A");
+		groupAText = new JLabel(categoryNames[0 + 3*(questionNum -1)]);
 		groupAText.setFont(new Font("Calibri", Font.ITALIC, 25));
 		groupAText.setForeground(Color.blue);
-		groupAText.setBorder(BorderFactory.createEmptyBorder(0, 135, 0, 0));
+		groupAText.setBorder(BorderFactory.createEmptyBorder(0, 170, 0, 0));
 		
 		groupAContainer.add(groupAText, BorderLayout.NORTH);
 		
@@ -263,10 +283,10 @@ public class GraphView {
 		
 		groupingPanel.add(groupBContainer);
 		
-		groupBText = new JLabel("Group B");
+		groupBText = new JLabel(categoryNames[1 + 3*(questionNum -1)]);
 		groupBText.setFont(new Font("Calibri", Font.ITALIC, 25));
 		groupBText.setForeground(Color.red);
-		groupBText.setBorder(BorderFactory.createEmptyBorder(0, 135, 0, 0));
+		groupBText.setBorder(BorderFactory.createEmptyBorder(0, 170, 0, 0));
 		
 		groupBContainer.add(groupBText, BorderLayout.NORTH);
 		
@@ -292,10 +312,10 @@ public class GraphView {
 		
 		groupingPanel.add(groupCContainer);
 		
-		groupCText = new JLabel("Group C");
+		groupCText = new JLabel(categoryNames[2 + 3*(questionNum -1)]);
 		groupCText.setFont(new Font("Calibri", Font.ITALIC, 25));
 		groupCText.setForeground(Color.green);
-		groupCText.setBorder(BorderFactory.createEmptyBorder(0, 135, 0, 0));
+		groupCText.setBorder(BorderFactory.createEmptyBorder(0, 170, 0, 0));
 		
 		groupCContainer.add(groupCText, BorderLayout.NORTH);
 		
@@ -312,14 +332,17 @@ public class GraphView {
         
         groupCDropContainer.add(groupCDrop);
         
+        resetCatCount(questionNum);        
+        
         PropertyChangeListener a = new PropertyChangeListener() {
 			@Override
 			public void propertyChange(PropertyChangeEvent arg0) {
 				// TODO Auto-generated method stub
-				component.setForeground(Color.blue);
-				responses.revalidate();
-				responses.repaint();
-				
+					component.setForeground(Color.blue);
+					responses.revalidate();
+					responses.repaint();	
+					incrementCatagory(0); 
+			
 				groupADrop.setText("A");
 			}
         };
@@ -333,6 +356,7 @@ public class GraphView {
 				component.setForeground(Color.red);
 				responses.revalidate();
 				responses.repaint();
+				incrementCatagory(1);
 				
 				groupBDrop.setText("B");
 			}
@@ -347,30 +371,62 @@ public class GraphView {
 				component.setForeground(Color.green);
 				responses.revalidate();
 				responses.repaint();
+				incrementCatagory(2);
 				
 				groupCDrop.setText("C");
 			}
         };
         
+              
         groupCDrop.addPropertyChangeListener("text", c);
       
         
         
         //buttonPanel
         drawButtonContainer = new JPanel();
-        drawButtonContainer.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        drawButtonContainer.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         drawButtonContainer.setBackground(new Color(255,255,255));
-        drawButtonContainer.setPreferredSize(new Dimension(200,55));
+        drawButtonContainer.setPreferredSize(new Dimension(500,150));
         
-        groupingPanel.add(drawButtonContainer, BorderLayout.SOUTH);
+        
+       
         
         draw = new JButton("Draw");
         draw.setPreferredSize(new Dimension(80,40));
         
-        draw.addActionListener(new NextButtonListener());
-        drawButtonContainer.add(draw);
+        if (questionNum != 3) {nextq = new JButton("Next Question");}
+        else {nextq = new JButton("Close");}
+        
+        nextq.setPreferredSize(new Dimension(150,40));
+        nextq.addActionListener(new NextQuestionButtonListener());        
+        
+        JButton prevq;
+		if (questionNum != 1) {prevq = new JButton(" Previous Question");}
+        else {prevq = new JButton("Close");}
+        
+        prevq.setPreferredSize(new Dimension(150,40));
+        prevq.addActionListener(new PrevQuestionButtonListener());
         
         
+        
+        if (chartType == "pie"){ draw.addActionListener(new PieButtonListener());}
+        if (chartType == "bar"){ draw.addActionListener(new BarButtonListener());}
+        
+        drawAnother = new JButton("Draw Another Chart");     
+		drawAnother.setPreferredSize(new Dimension(150,40));
+		drawAnother.addActionListener(new drawAnotherListener());
+		
+		   JPanel subPanel1 = new JPanel();
+		    subPanel1.add(prevq); 
+		    subPanel1.add(draw);
+	        subPanel1.add(drawAnother);
+	        subPanel1.add(nextq);
+	        subPanel1.setBackground(new Color(255,255,255));
+	        drawButtonContainer.add(subPanel1, BorderLayout.SOUTH);
+		
+	        groupingPanel.add(drawButtonContainer, BorderLayout.SOUTH);
+	        
+	        
         listener = new DragMouseAdapter();
         for(int i = 0; i<responsePanels.size();i++){
         	responsePanels.get(i).addMouseListener(listener);
@@ -402,17 +458,71 @@ public class GraphView {
         
     }
 	
-	class NextButtonListener implements ActionListener{
+	class drawAnotherListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			frame.dispose();
+			new GraphView().Open(questionNum);
+			
+		}
+		
+		
+	}
+	
+	class PieButtonListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			worker.cancel(true);
-			PieChart demo = new PieChart("Comparison", "Was the judge's verdict correct?");
+			PieChart demo = new PieChart("Pie Chart for Question " + questionNum, "Pie Chart for " + getQuestionString(questionNum), getQnum());
 	        demo.pack();
+	        demo.setVisible(true);
+	        
+			
+		}
+		
+	}
+	
+	class BarButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			worker.cancel(true);
+			BarChart demo = new BarChart("Bar Chart for Question " + questionNum, "Bar Chart for " + getQuestionString(questionNum),getQnum());
+	        demo.pack();
+	        RefineryUtilities.centerFrameOnScreen(demo);
 	        demo.setVisible(true);
 			
 		}
 		
+	}
+	
+	
+	class NextQuestionButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (questionNum != 3){ 
+				frame.dispose();
+				new GraphView().Open(questionNum + 1);
+				}
+			else{frame.dispose();}
+		}
+	
+	}
+	
+	class PrevQuestionButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (questionNum != 1){ 
+				frame.dispose();
+				new GraphView().Open(questionNum - 1);
+				}
+			else{frame.dispose();}
+		}
+	
 	}
 	
 	
@@ -426,6 +536,91 @@ public class GraphView {
 		}
 		return myPicture;
 	}
+	
+		
+	public static void resetCatCount(int qnum){
+		if (qnum == 1){
+			categoryCount[0] = 0;
+			categoryCount[1] = 0;
+			categoryCount[2] = 0;
+			}
+			
+			if (qnum == 2){
+				categoryCount[3] = 0;
+				categoryCount[4] = 0;
+				categoryCount[5] = 0;
+			}	
+			
+			if (qnum == 3){
+				categoryCount[6] = 0;
+				categoryCount[7] = 0;
+				categoryCount[8] = 0;
+		   }	
+				
+			
+		}
+	
+	
+	public static int[] getcatCount(int qnum){
+		int[] catcounter = new int[3];
+		for (int i = 0; i<3; i++){
+			catcounter[i] =categoryCount[i + 3*(qnum-1)];
+		}
+		return catcounter;
+		
+	}
+	
+	public void incrementCatagory(int catNo){
+		int qNum = questionNum;
+		categoryCount[catNo + 3*(qNum -1)] = categoryCount[catNo + 3*(qNum -1)] + 1;
+				
+	}
+	
+	public void setCategoryNames(int qnum, String[] catNames, String a, String b, String c){
+		if (qnum == 1){
+		catNames[0] = a;
+		catNames[1] = b;
+		catNames[2] = c;
+		}
+		
+		if (qnum == 2){
+		catNames[3] = a;
+		catNames[4] = b;
+		catNames[5] = c;
+		}	
+		
+		if (qnum == 3){
+			catNames[6] = a;
+			catNames[7] = b;
+			catNames[8] = c;
+	   }	
+			
+		
+	}
+	
+	
+	public static int getQnum(){
+		int some = questionNum;
+		return some;
+		
+	}
+	
+	public static String getQuestionString(int qnum){
+		if (qnum ==1) return question1;
+		if (qnum ==2) return question2;
+		if (qnum ==3) return question3;
+		else return "bad";
+	}
+	
+	public static String[] getCategoryNames(int qnum){
+		String[] catNames = new String[3];
+			for (int i = 0; i<3; i++){
+				catNames[i] =categoryNames[i + 3*(qnum-1)];
+			}
+			return catNames;
+		
+	}
+	
 	
 	public String readResponses(){
 		String text = "";
@@ -452,6 +647,7 @@ public class GraphView {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			
+			chartType = "pie";
 			graphPanel.setVisible(false);
 			setUpGroupingPanel(contentPane);
 			
@@ -482,6 +678,45 @@ public class GraphView {
 		}
 		
 	}
+	
+	
+	class BarChartListener implements MouseListener{
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			
+			chartType = "bar";
+			graphPanel.setVisible(false);
+			setUpGroupingPanel(contentPane);
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		
+	}
 
       class ResponseThread extends SwingWorker<Void,String>{
 		@Override
@@ -495,6 +730,8 @@ public class GraphView {
           	responses.revalidate();
 		}
 
+		
+		
 		@Override
 		protected Void doInBackground() throws Exception {
 			while(!isCancelled())
