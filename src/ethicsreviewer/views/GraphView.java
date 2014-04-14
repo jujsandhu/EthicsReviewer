@@ -38,6 +38,7 @@ import org.jfree.ui.RefineryUtilities;
 import ethicsreviewer.controller.CurrentSession;
 import ethicsreviewer.controller.Response;
 import ethicsreviewer.graphs.BarChart;
+import ethicsreviewer.graphs.Grouping;
 import ethicsreviewer.graphs.PieChart;
 import ethicsreviewer.utils.ConnectDatabase;
 
@@ -222,6 +223,7 @@ public class GraphView {
 		groupText.setFont(new Font("Calibri", Font.ITALIC, 25));
 		groupText.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 0));
 		groupLabel = new JLabel(new ImageIcon(uploadPicture("group")));
+		groupLabel.addMouseListener(new GroupingListener());
 		groupContainer.add(groupText, BorderLayout.WEST);
 		groupContainer.add(groupLabel);
 		graphPanel.add(groupContainer, BorderLayout.CENTER);
@@ -413,6 +415,7 @@ public class GraphView {
         
         if (chartType == "pie"){ draw.addActionListener(new PieButtonListener());}
         if (chartType == "bar"){ draw.addActionListener(new BarButtonListener());}
+        if (chartType == "grouping"){ draw.addActionListener(new GroupingButtonListener());}
         
         drawAnother = new JButton("Draw Another Chart");     
 		drawAnother.setPreferredSize(new Dimension(150,40));
@@ -508,6 +511,27 @@ public class GraphView {
 			
 			worker.cancel(true);
 			BarChart demo = new BarChart("Bar Chart for Question " + questionNum, "Bar Chart for " + getQuestionString(questionNum),qnum);
+	        demo.pack();
+	        RefineryUtilities.centerFrameOnScreen(demo);
+	        demo.setVisible(true);
+			
+		}
+		
+	}
+	
+	class GroupingButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			int qnum = getQnum();
+			Response.uploadGraphData(qnum, 0, categoryCount[0 + 3*(qnum-1)]/2);
+			Response.uploadGraphData(qnum, 1, categoryCount[1 + 3*(qnum-1)]/2);
+			Response.uploadGraphData(qnum, 2, categoryCount[2 + 3*(qnum-1)]/2);
+			
+			
+			worker.cancel(true);
+			Grouping demo = new Grouping("Grouping for Question " + questionNum, "Grouping for " + getQuestionString(questionNum), responsePanels, categoryNames, qnum);
 	        demo.pack();
 	        RefineryUtilities.centerFrameOnScreen(demo);
 	        demo.setVisible(true);
@@ -710,6 +734,44 @@ public class GraphView {
 		public void mouseClicked(MouseEvent arg0) {
 			
 			chartType = "bar";
+			graphPanel.setVisible(false);
+			setUpGroupingPanel(contentPane);
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		
+	}
+	
+	class GroupingListener implements MouseListener{
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			
+			chartType = "grouping";
 			graphPanel.setVisible(false);
 			setUpGroupingPanel(contentPane);
 			

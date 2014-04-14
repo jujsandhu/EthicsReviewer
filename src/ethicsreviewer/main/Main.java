@@ -16,8 +16,8 @@ public class Main {
             @Override
             public void run()
             {
-               new InitialView().setVisible(true);
-                //new GraphView().Open(1);
+               //new InitialView().setVisible(true);
+                new GraphView().Open(1);
                 //new GraphViewStudents().Open(1);
             }
 
