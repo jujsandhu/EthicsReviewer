@@ -40,6 +40,8 @@ import ethicsreviewer.controller.CurrentSession;
 import ethicsreviewer.controller.Response;
 import ethicsreviewer.graphs.BarChart;
 import ethicsreviewer.graphs.BarChartStudent;
+import ethicsreviewer.graphs.Grouping;
+import ethicsreviewer.graphs.GroupingStudent;
 import ethicsreviewer.graphs.PieChart;
 import ethicsreviewer.graphs.PieChartStudent;
 import ethicsreviewer.views.GraphView.DragMouseAdapter;
@@ -61,6 +63,14 @@ public class GraphViewStudents {
 	ArrayList<JLabel> responsePanels;
 	private ResponseThread worker;
 	private static JComponent component;
+	
+	private static int[] categoryCount = new int[9] ;
+	private static String[] categoryNames = new String[] {"Untrue Statement", "Inadmissable in Count", "Deniable in Court", "Yes", "No", "Under certain conditions", "Privacy converns",
+		"Public outrage", "Political Lobbying"} ;
+	private static String question1 = "Question 1: What does Alastair Brett mean by off the record?";
+	private static String question2 = "Question 2: Did  Alastair Brett have permission to leak the information to his colleagues?";
+	private static String question3 = "Question 3: What could be the problem that Alastair Brett was so annoyed about?";
+	public String chartType;
 	
 	private int questionNum;
 	
@@ -229,7 +239,7 @@ public class GraphViewStudents {
 		Groupingbutton.setFont(new Font("Calibri", Font.ITALIC, 25));
 		//Groupingbutton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		groupLabel = new JLabel(new ImageIcon(uploadPicture("group")));
-		//Groupingbutton.addActionListener(new ButtonListener()); ??
+		Groupingbutton.addActionListener(new GroupingButtonListener());
 		//groupLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		
@@ -305,6 +315,21 @@ public class GraphViewStudents {
 				
 			PieChartStudent demo = new PieChartStudent("Pie Chart for Question " + questionNum, "Pie Chart for " + GraphView.getQuestionString(questionNum), questionNum, catcount);
 	        demo.pack();
+	        demo.setVisible(true);
+			
+		}
+		
+	}
+	
+	class GroupingButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			worker.cancel(true);
+			GroupingStudent demo = new GroupingStudent("Grouping for Question " + questionNum, "Grouping for " + getQuestionString(questionNum), responsePanels, categoryNames, questionNum);
+	        demo.pack();
+	        RefineryUtilities.centerFrameOnScreen(demo);
 	        demo.setVisible(true);
 			
 		}
@@ -438,5 +463,12 @@ public class GraphViewStudents {
 		}
 	  };
   
+	  public static String getQuestionString(int qnum){
+			if (qnum ==1) return question1;
+			if (qnum ==2) return question2;
+			if (qnum ==3) return question3;
+			else return "bad";
+		}
+	  
 }
 

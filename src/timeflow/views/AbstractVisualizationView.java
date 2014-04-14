@@ -15,6 +15,7 @@ import java.util.*;
 import javax.swing.*;
 
 import ethicsreviewer.views.MediaViews;
+import ethicsreviewer.views.ResponseView;
 import ethicsreviewer.controller.CurrentSession;
 
 public abstract class AbstractVisualizationView extends JPanel
@@ -113,8 +114,9 @@ public abstract class AbstractVisualizationView extends JPanel
 		        	String name=v.getLabel();
 		        	
 		        	// "name" is the name of the label clicked on as a string
-		        	new MediaViews().loadMedia(name);
+		        	//new MediaViews().loadMedia(name);
 		        	
+		        	new ResponseView().openScreen();
 	        	}
 	        	
 		    }

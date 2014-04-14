@@ -88,11 +88,13 @@ public class MediaViews {
         
         contentPane.add(titleBar, BorderLayout.NORTH);
                 
+        
         JPanel panel = getBrowserPanel();
         panel.setBackground(new Color(255,255,255));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         
         contentPane.add(panel, BorderLayout.CENTER);
+        
         
         JPanel buttonsBar = new JPanel();
         buttonsBar.setLayout(new BorderLayout());
