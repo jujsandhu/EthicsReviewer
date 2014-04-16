@@ -77,16 +77,17 @@ public abstract class AbstractVisualizationView extends JPanel
 			}});
 		
 		// deal with right-click.
+	    
 		addMouseListener(new MouseAdapter() {
 		    public void mousePressed(MouseEvent e) {
 		    	if (e.isPopupTrigger()) {
-		    		pop(e);
+		    		//pop(e);
 		    	}
 		    }
 
 		    public void mouseReleased(MouseEvent e) {
 		    	if (e.isPopupTrigger()) {
-		    		pop(e);
+		    		//pop(e);
 		    	}
 		    	else
 		    	{
@@ -118,10 +119,9 @@ public abstract class AbstractVisualizationView extends JPanel
 		        	
 		        	new ResponseView().openScreen();
 	        	}
-	        	
-		    }
+		    }});
 		    /***************************************************/
-		    
+		    /*
 
 		    private void pop(MouseEvent e) {
 	        	Point p=new Point(e.getX(), e.getY());
@@ -179,7 +179,7 @@ public abstract class AbstractVisualizationView extends JPanel
 		        	popup.show(e.getComponent(), p.x, p.y);
 	        	}
 		    }
-		});
+		});*/
 	}
 	
 	public RoughTime getTime(Point p)

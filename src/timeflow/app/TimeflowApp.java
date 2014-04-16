@@ -188,7 +188,7 @@ public class TimeflowApp extends JFrame
 		*/
 		
 		center.add(timeline, BorderLayout.CENTER);
-		displayPanel.addLocalControl(timeline.getName(), timeline.getControls());
+		displayPanel.addLocalControl(timeline.getName(), timeline.getControls());}
 		
 		// start off with intro screen
 		/*
@@ -214,6 +214,7 @@ public class TimeflowApp extends JFrame
 		*/
 		
 		// Menus
+		/*
 		JMenuBar menubar=new JMenuBar();
 		setJMenuBar(menubar);
 		
@@ -399,6 +400,8 @@ public class TimeflowApp extends JFrame
 			e.printStackTrace(System.out);
 		}
 	}
+	
+	*/
 	
 	void exportHtml()
 	{
@@ -628,7 +631,7 @@ public class TimeflowApp extends JFrame
 
 		state.setCurrentFile(new File(file));
 		state.save();
-		makeRecentFileMenu();
+		//makeRecentFileMenu();
 
 	}
 	
