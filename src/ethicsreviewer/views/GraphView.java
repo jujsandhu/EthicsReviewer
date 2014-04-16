@@ -487,9 +487,9 @@ public class GraphView {
 			Response.uploadGraphData(qnum, 1, categoryCount[1 + 3*(qnum-1)]/2);
 			Response.uploadGraphData(qnum, 2, categoryCount[2 + 3*(qnum-1)]/2);
 			
-			
+			int seshid = CurrentSession.getSessionID();
 			worker.cancel(true);
-			PieChart demo = new PieChart("Pie Chart for Question " + questionNum, "Pie Chart for " + getQuestionString(questionNum), getQnum());
+			PieChart demo = new PieChart("Pie Chart for Session " + seshid +  "'s answers to Question " + questionNum, "Pie Chart for Session " + seshid +  "'s answers to " + getQuestionString(questionNum), getQnum());
 	        demo.pack();
 	        demo.setVisible(true);
 	        
@@ -508,9 +508,9 @@ public class GraphView {
 			Response.uploadGraphData(qnum, 1, categoryCount[1 + 3*(qnum-1)]/2);
 			Response.uploadGraphData(qnum, 2, categoryCount[2 + 3*(qnum-1)]/2);
 			
-			
+			int seshid = CurrentSession.getSessionID();
 			worker.cancel(true);
-			BarChart demo = new BarChart("Bar Chart for Question " + questionNum, "Bar Chart for " + getQuestionString(questionNum),qnum);
+			BarChart demo = new BarChart("Bar Chart for Session " + seshid +  "'s answers to Question " + questionNum, "Bar Chart for Session " + seshid +  "'s answers to " + getQuestionString(questionNum),qnum);
 	        demo.pack();
 	        RefineryUtilities.centerFrameOnScreen(demo);
 	        demo.setVisible(true);
@@ -518,6 +518,7 @@ public class GraphView {
 		}
 		
 	}
+
 	
 	class GroupingButtonListener implements ActionListener{
 

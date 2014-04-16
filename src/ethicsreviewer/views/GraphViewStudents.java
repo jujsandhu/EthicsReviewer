@@ -312,8 +312,8 @@ public class GraphViewStudents {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-				
-			PieChartStudent demo = new PieChartStudent("Pie Chart for Question " + questionNum, "Pie Chart for " + GraphView.getQuestionString(questionNum), questionNum, catcount);
+			int seshid = CurrentSession.getSessionID();
+			PieChartStudent demo = new PieChartStudent("Pie Chart for Session " + seshid +  "'s answers to Question " + questionNum, "Pie Chart for Session " + seshid +  "'s answers to " + getQuestionString(questionNum), questionNum, catcount);
 	        demo.pack();
 	        demo.setVisible(true);
 			
@@ -353,9 +353,9 @@ public class GraphViewStudents {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
+			int seshid = CurrentSession.getSessionID();
 			
-			BarChartStudent demo = new BarChartStudent("Bar Chart for Question " + questionNum, "Bar Chart for " + GraphView.getQuestionString(questionNum),questionNum,catcount);
+			BarChartStudent demo = new BarChartStudent("Bar Chart for Session " + seshid +  "'s answers to Question " + questionNum, "Bar Chart for Session " + seshid +  "'s answers to " + getQuestionString(questionNum),questionNum,catcount);
 	        demo.pack();
 	        RefineryUtilities.centerFrameOnScreen(demo);
 	        demo.setVisible(true);
