@@ -20,7 +20,8 @@ public class InitialView extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	public static JFrame frame;
+	
 	public InitialView(){
 	
 		//Create view
@@ -64,6 +65,7 @@ public class InitialView extends JFrame implements ActionListener {
         lecturer.setActionCommand("Open Lecturer Panel");
         buttonContainer.add(lecturer);
         
+        
         JButton Closebtn;
         Closebtn = new JButton("Close");
         Closebtn.addActionListener((ActionListener) this);
@@ -96,9 +98,9 @@ public class InitialView extends JFrame implements ActionListener {
             dispose();
             System.out.println("Opening Lecturer Login Panel");
             final String NOT_LOGGED_IN = "LoginPanel Test - Currently Logged Out";
-            final JFrame frame = new JFrame(NOT_LOGGED_IN);
+            frame = new JFrame(NOT_LOGGED_IN);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.getContentPane().add(new LecturerLogin());
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setLocationRelativeTo(null);
             frame.setSize(500, frame.getHeight());
@@ -113,5 +115,8 @@ public class InitialView extends JFrame implements ActionListener {
             new StudentLogin(null, rootPaneCheckingEnabled, "Type in session passphrase");
          }
      }
-	
+	 
+	 public static JFrame getFrame(){
+		 return frame;
+	 }
 }

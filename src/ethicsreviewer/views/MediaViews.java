@@ -22,7 +22,7 @@ import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import ethicsreviewer.controller.CurrentSession;
 
 public class MediaViews {
-	
+	public JFrame frame;
 	// loads different media windows depending on the label clicked on
 	public void loadMedia(String labelName)
 	{
@@ -60,7 +60,7 @@ public class MediaViews {
 	private void displayMediaWindow1()
     {
     	// Create window, give it a title
-        JFrame frame = new JFrame("Introduction");
+        frame = new JFrame("Introduction");
         
         // Define what happens when you click the "x" button
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -145,6 +145,7 @@ public class MediaViews {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String user = CurrentSession.getUser();
+			frame.dispose();
 			if (user.equals("Student"))
 			   new ResponseView().openScreen();
 			else 

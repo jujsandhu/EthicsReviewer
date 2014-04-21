@@ -13,10 +13,6 @@
 	<classpathentry kind="lib" path="lib/mediaplayer.jar"/>
 	<classpathentry kind="lib" path="lib/multiplayer.jar"/>
 	<classpathentry kind="lib" path="lib/sqljdbc4.jar"/>
-	<classpathentry kind="lib" path="lib/DJNativeSwing-SWT.jar"/>
-	<classpathentry kind="lib" path="lib/DJNativeSwing-SWTDemo.jar"/>
-	<classpathentry kind="lib" path="lib/DJNativeSwing.jar"/>
 	<classpathentry kind="lib" path="lib/jna_WindowUtils.jar"/>
-	<classpathentry kind="lib" path="lib/swt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

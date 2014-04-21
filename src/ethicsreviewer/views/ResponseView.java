@@ -15,6 +15,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -29,6 +30,7 @@ public class ResponseView {
     JTextArea responseArea;
     JTextArea responseArea2;
     JTextArea responseArea3;
+    JFrame frame;
 	public ResponseView(){
 		responseList = new HashMap<Integer,String>();
 		
@@ -37,7 +39,7 @@ public class ResponseView {
 	public void openScreen(){
 
 		// Create window, give it a title
-        JFrame frame = new JFrame("Response Screen");
+        frame = new JFrame("Response Screen");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Make a new border layout for the content in the window
@@ -216,21 +218,33 @@ public class ResponseView {
         //iterate in the future if JTextArea is dynamic
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			responseList.put(1, responseArea.getText());
-			responseList.put(2, responseArea2.getText());
-			responseList.put(3, responseArea3.getText());
-			next.setText("Submitted");
-			next.setForeground(Color.red);
-			next.setEnabled(false);
-			Response.uploadResponses(responseList);
-			if (CurrentSession.getUser() == "Student"){
-				new GraphViewStudents().Open(1);
-			}
-			else{
-					
-			new GraphView().Open(1);}
+			if (checkEmpty()) {
+				responseList.put(1, responseArea.getText());
+				responseList.put(2, responseArea2.getText());
+				responseList.put(3, responseArea3.getText());
+				next.setText("Submitted");
+				next.setForeground(Color.red);
+				next.setEnabled(false);
+				Response.uploadResponses(responseList);
+				frame.dispose();
+				if (CurrentSession.getUser() == "Student") {
+					new GraphViewStudents().Open(1);
+				} else {
+
+					new GraphView().Open(1);
+				}
+			} else
+				JOptionPane.showMessageDialog(frame, "Answer All Questions");
 		}
 		
+	}
+	
+	public boolean checkEmpty(){
+		if ((responseArea.getText().trim().length() > 0) &&(responseArea2.getText().trim().length() > 0) 
+				&&(responseArea3.getText().trim().length() > 0)  ){
+		    return true;
+		}
+		else return false;
 	}
 	
 	public String readTranscript(String transcriptFileName){

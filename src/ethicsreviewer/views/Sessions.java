@@ -30,6 +30,7 @@ public class Sessions {
 	String[] examples;
 	private int sessionID;
 	private CurrentSession session;
+	JFrame frame;
 	
 	public Sessions(){
 		row = -1;
@@ -39,7 +40,7 @@ public class Sessions {
 	
 	public void openScreen(){
 		// Create window, give it a title
-        JFrame frame = new JFrame("Timeline Sessions");
+        frame = new JFrame("Timeline Sessions");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Make a new border layout for the content in the window
@@ -128,6 +129,7 @@ public class Sessions {
 				final TimeflowApp t=new TimeflowApp();
 			    CurrentSession.setSessionID(sessionID);
 			    CurrentSession.setUser("Lecturer");
+			    frame.dispose();
 				timeflow.app.TimeflowAppLauncher.launch("settings/examples/8. Leveson Inquiry1.start");
 			}	
 		}

@@ -16,9 +16,8 @@ public class Login {
 		String SQL = "select username from lecturerlogin where username = '"
 				+ user_input + "' " + "and pword = '" + pass_input+"'";
 		
-		String SL = "SELECT username from lecturerlogin where username = 'moorehead' and pword = 'pass'";
 		ConnectDatabase connection = new ConnectDatabase();
-		ResultSet rs = connection.getResults(SL);
+		ResultSet rs = connection.getResults(SQL);
 		try {
 			if (rs.next())
 				dbUsername = rs.getString(1);

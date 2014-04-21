@@ -98,6 +98,8 @@ public class LecturerLogin extends JPanel  {
              if(logButt.getText().equals(LOG_IN)) {
                  // seek login approval from derived class
                  if(login.verifyPassword(nameField.getText(), new String(pswdField.getPassword()))) {
+                	 InitialView.getFrame().dispose();
+                	 
                 	 CurrentSession.setUser("Lecturer");
                      startSession.openScreen();
 
